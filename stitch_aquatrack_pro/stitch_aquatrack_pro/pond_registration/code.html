@@ -1,0 +1,243 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Pond Registration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fdf8ff",
+                    "primary-fixed": "#e5deff",
+                    "status-info": "#007bff",
+                    "surface-accent": "#f0edff",
+                    "on-error-container": "#93000a",
+                    "primary": "#4a25d3",
+                    "on-tertiary-fixed": "#331200",
+                    "surface-bright": "#fdf8ff",
+                    "status-danger": "#dc3545",
+                    "outline": "#787587",
+                    "surface-container": "#f1ecf9",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#813800",
+                    "on-secondary-fixed-variant": "#2636b2",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#5c3de4",
+                    "on-secondary-container": "#fffbff",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e5e0ee",
+                    "primary-container": "#6346eb",
+                    "status-success": "#28a745",
+                    "surface": "#fdf8ff",
+                    "status-warning": "#fd7e14",
+                    "surface-muted": "#f8f9fa",
+                    "on-secondary-fixed": "#000a64",
+                    "surface-container-high": "#ebe6f4",
+                    "surface-container-low": "#f7f1ff",
+                    "on-background": "#1c1a24",
+                    "tertiary-fixed": "#ffdbca",
+                    "secondary-fixed-dim": "#bcc2ff",
+                    "on-primary-fixed-variant": "#4318cc",
+                    "inverse-on-surface": "#f4eefc",
+                    "inverse-surface": "#312f39",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#c9c4d8",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#a64a00",
+                    "on-surface-variant": "#484555",
+                    "secondary-container": "#5968e2",
+                    "tertiary-fixed-dim": "#ffb68e",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed": "#190064",
+                    "secondary": "#3f4ec8",
+                    "inverse-primary": "#c8bfff",
+                    "on-tertiary-container": "#ffdccb",
+                    "on-tertiary-fixed-variant": "#763300",
+                    "surface-container-highest": "#e5e0ee",
+                    "secondary-fixed": "#dfe0ff",
+                    "on-surface": "#1c1a24",
+                    "primary-fixed-dim": "#c8bfff",
+                    "on-primary-container": "#e6dfff",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#ddd8e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "80px",
+                    "lg": "48px",
+                    "sm": "12px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "tabular-nums": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "headline-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                    "tabular-nums": ["14px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .step-indicator.active {
+            @apply bg-primary text-on-primary border-primary;
+        }
+        .step-indicator.completed {
+            @apply bg-primary-container text-primary border-primary-container;
+        }
+        .step-line.active {
+            @apply bg-primary;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col antialiased pb-24 md:pb-0">
+<!-- Top Navigation (Mobile Focus, hides on desktop for sidebar logic if it existed) -->
+<header class="sticky top-0 z-40 bg-surface border-b border-outline-variant px-margin-mobile h-16 flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<button class="p-2 -ml-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">New Pond</h1>
+</div>
+<div class="flex items-center gap-xs">
+<div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded-full text-status-success font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+<span>Saved</span>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-lg mx-auto p-margin-mobile flex flex-col gap-lg">
+<!-- Progress Steps -->
+<div class="flex items-center justify-between w-full px-2 relative z-0">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-surface-variant -z-10 rounded-full"></div>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1/2 h-1 bg-primary -z-10 rounded-full transition-all duration-300"></div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-8 h-8 rounded-full flex items-center justify-center font-label-md text-label-md step-indicator completed shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Location</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-8 h-8 rounded-full flex items-center justify-center font-label-md text-label-md step-indicator active shadow-sm">
+                    2
+                </div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Details</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-md text-label-md border-2 border-surface-container-high">
+                    3
+                </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Owner</span>
+</div>
+</div>
+<!-- Current Step Content: Details (Example) -->
+<section class="flex flex-col gap-md animate-[fadeIn_0.3s_ease-out]">
+<div class="glass-card rounded-xl p-md flex flex-col gap-md">
+<div class="flex items-center gap-sm pb-sm border-b border-surface-variant">
+<div class="w-8 h-8 rounded-lg bg-surface-tint/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Physical Characteristics</h2>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Estimated Area (m²)</label>
+<input class="w-full bg-surface-muted border-none rounded-lg px-3 py-2 font-body-md text-body-md focus:ring-2 focus:ring-primary focus:bg-surface transition-all placeholder:text-outline" placeholder="e.g. 1500" type="number" value="1250">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Max Depth (m)</label>
+<input class="w-full bg-surface-muted border-none rounded-lg px-3 py-2 font-body-md text-body-md focus:ring-2 focus:ring-primary focus:bg-surface transition-all placeholder:text-outline" placeholder="e.g. 3.5" type="number">
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Water Source</label>
+<div class="flex gap-2 overflow-x-auto pb-2 snap-x">
+<label class="flex-shrink-0 snap-start relative flex cursor-pointer">
+<input checked="" class="peer sr-only" name="water_source" type="radio">
+<div class="px-4 py-2 rounded-full border border-outline-variant peer-checked:bg-primary-container peer-checked:text-on-primary-container peer-checked:border-primary-container transition-all font-label-md text-label-md">Rainfed</div>
+</label>
+<label class="flex-shrink-0 snap-start relative flex cursor-pointer">
+<input class="peer sr-only" name="water_source" type="radio">
+<div class="px-4 py-2 rounded-full border border-outline-variant peer-checked:bg-primary-container peer-checked:text-on-primary-container peer-checked:border-primary-container transition-all font-label-md text-label-md">Groundwater</div>
+</label>
+<label class="flex-shrink-0 snap-start relative flex cursor-pointer">
+<input class="peer sr-only" name="water_source" type="radio">
+<div class="px-4 py-2 rounded-full border border-outline-variant peer-checked:bg-primary-container peer-checked:text-on-primary-container peer-checked:border-primary-container transition-all font-label-md text-label-md">Stream/River</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Mini Map Preview (Since Location is 'Done') -->
+<div class="glass-card rounded-xl overflow-hidden shadow-sm relative group cursor-pointer">
+<img class="w-full h-32 object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A top-down satellite map view of a rural, lush green agricultural landscape. A bright purple map pin sits squarely in the center over a small body of water. The UI aesthetic is clean and modern, evoking a high-tech agricultural sensing tool. Sunlight is bright and clear." data-location="Rural Farmland" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiyBLArn5uFgo37-8p5rDXVC-uZlYri_udOAVWJCC30ppslVLTx03AUKhUQvSKeMW4TowP5eQM3xYiKbq6mvPh7PZPChuuAfu0zPhcg28rO5M1LP2DsKSlqyHIcbfN_d0e4c3bF3eJYOg5fnb1ucfhZn075_kH2X0bmMfzJCpAvCkqpLGJjsFiB1PIaKkC6J9Y1Zf64u7u2ekTLj0Nbeg4y7JUi2zUFCSQlcu85XcuGPsDzHz4n_0">
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex flex-col justify-end p-sm">
+<div class="flex items-center justify-between text-white">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="font-label-md text-label-md truncate">23.456, 89.123</span>
+</div>
+<span class="font-label-sm text-label-sm underline decoration-white/50">Edit Location</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1 pt-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Notes / Observations</label>
+<textarea class="w-full h-24 bg-surface-muted border-none rounded-lg px-3 py-2 font-body-md text-body-md focus:ring-2 focus:ring-primary focus:bg-surface transition-all placeholder:text-outline resize-none" placeholder="Add any initial observations about pond health or surroundings..."></textarea>
+</div>
+</section>
+<!-- Actions -->
+<div class="flex gap-sm mt-auto pt-lg pb-lg">
+<button class="flex-1 py-3 px-4 rounded-xl border border-outline-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors">
+                Back
+            </button>
+<button class="flex-[2] py-3 px-4 rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition-all active:scale-[0.98]">
+                Continue
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Mobile Only, Suppressed logically if this was a true modal, but rendered here per standard mobile shell layout if considered top level for workers) -->
+<!-- As per logic: Linear/Transactional intent typically suppresses this. Since it's a multi-step form, we should logically suppress it. However, if forced by JSON blueprint to show it, we would, but the logic mandates suppression. Suppressing bottom nav to prioritize canvas. -->
+</body></html>

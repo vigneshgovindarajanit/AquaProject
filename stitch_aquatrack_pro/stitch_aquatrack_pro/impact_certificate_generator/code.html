@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AquaMonitor - Impact Certificate</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-accent": "#f0edff",
+                    "inverse-on-surface": "#f4eefc",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#e5deff",
+                    "surface-bright": "#fdf8ff",
+                    "tertiary-container": "#a64a00",
+                    "on-primary-fixed": "#190064",
+                    "status-danger": "#dc3545",
+                    "secondary-fixed-dim": "#bcc2ff",
+                    "status-success": "#28a745",
+                    "surface-container-high": "#ebe6f4",
+                    "on-primary-container": "#e6dfff",
+                    "surface-variant": "#e5e0ee",
+                    "surface-container-highest": "#e5e0ee",
+                    "surface-tint": "#5c3de4",
+                    "on-primary-fixed-variant": "#4318cc",
+                    "on-surface-variant": "#484555",
+                    "secondary-container": "#5968e2",
+                    "surface-container-low": "#f7f1ff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#dfe0ff",
+                    "on-tertiary-fixed": "#331200",
+                    "tertiary-fixed": "#ffdbca",
+                    "status-info": "#007bff",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#f1ecf9",
+                    "background": "#fdf8ff",
+                    "secondary": "#3f4ec8",
+                    "surface": "#fdf8ff",
+                    "on-surface": "#1c1a24",
+                    "on-tertiary-fixed-variant": "#763300",
+                    "on-secondary-container": "#fffbff",
+                    "surface-dim": "#ddd8e5",
+                    "primary-container": "#6346eb",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb68e",
+                    "on-secondary-fixed-variant": "#2636b2",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-muted": "#f8f9fa",
+                    "tertiary": "#813800",
+                    "on-tertiary-container": "#ffdccb",
+                    "primary": "#4a25d3",
+                    "outline-variant": "#c9c4d8",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#c8bfff",
+                    "primary-fixed-dim": "#c8bfff",
+                    "on-secondary-fixed": "#000a64",
+                    "status-warning": "#fd7e14",
+                    "on-primary": "#ffffff",
+                    "outline": "#787587",
+                    "inverse-surface": "#312f39",
+                    "on-background": "#1c1a24"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "lg": "48px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "xl": "80px",
+                    "md": "24px",
+                    "margin-mobile": "16px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "tabular-nums": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "body-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "tabular-nums": ["14px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .certificate-border {
+            position: relative;
+        }
+        
+        .certificate-border::before {
+            content: '';
+            position: absolute;
+            top: 12px; left: 12px; right: 12px; bottom: 12px;
+            border: 2px solid #e5deff;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        
+        .seal-stamp {
+            background: radial-gradient(circle, #6346eb 0%, #4a25d3 100%);
+            box-shadow: 0 4px 12px rgba(99, 70, 235, 0.3);
+        }
+        
+        .signature-font {
+            font-family: 'Brush Script MT', cursive, 'Times New Roman', serif;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col lg:flex-row">
+<!-- Desktop Sidebar (Semantic match: Reports/Ponds context -> Reports is active as it's a generated document) -->
+<nav class="hidden lg:flex flex-col h-full p-gutter bg-surface-container-lowest shadow-sm fixed left-0 top-0 w-[260px] z-50">
+<div class="mb-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">AquaMonitor</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Water Management</p>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-sm px-md rounded-lg flex items-center justify-center gap-sm mb-lg hover:bg-primary hover:text-on-primary transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add</span>
+            New Project
+        </button>
+<ul class="flex flex-col gap-xs flex-grow">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">water_drop</span>
+<span class="font-label-md text-label-md">Ponds</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">assignment</span>
+<span class="font-label-md text-label-md">Projects</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">engineering</span>
+<span class="font-label-md text-label-md">Workers</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">monitoring</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg bg-primary text-on-primary font-bold shadow-sm transition-transform duration-200 hover:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors mt-auto" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 lg:pl-[260px] flex flex-col min-h-screen">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center h-16 px-gutter w-full bg-surface/80 backdrop-blur-md sticky top-0 z-40">
+<div class="flex items-center gap-md">
+<span class="lg:hidden font-headline-md-mobile text-headline-md-mobile font-bold text-primary">AquaMonitor</span>
+<div class="hidden lg:flex items-center text-on-surface-variant gap-xs">
+<a class="hover:text-primary font-label-sm text-label-sm" href="#">Reports</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-label-sm text-label-sm text-primary font-bold border-b-2 border-primary">Generate Certificate</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary p-xs rounded-full hover:bg-surface-accent transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary p-xs rounded-full hover:bg-surface-accent transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full object-cover shadow-sm border border-outline-variant" data-alt="A professional headshot of an environmental engineer in a bright, modern office setting. High key lighting, clean crisp background, conveying trust and expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAocEUL25Op-_23eRP-u3ckc4sdvob3XN2apq71QufU8XeOXD5-ROYZ-TA9rI7vzYzsoJAfqLWy5bzXnLqA8R32Pm0g80xetc4kAzH-_OnmOmGIKkZebxHKNKKF7Tq5BAezJZXZ87Zg7IhvloGSnu4MMNe9lRuPHYXld3phOf9jjpTS3mm9hYeVA_05eLMEiFMQIMRrvK1kTMvSzceY8pGSUgwRhwbDXfqS6n_5apc0fYZ5rx54Mo"/>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 p-margin-mobile md:p-gutter flex justify-center items-start bg-surface-muted">
+<!-- Certificate Preview Container -->
+<div class="w-full max-w-4xl flex flex-col gap-md">
+<!-- Action Bar -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md bg-surface-container-lowest p-md rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface md:hidden">Impact Certificate</h2>
+<h2 class="font-headline-lg text-headline-lg text-on-surface hidden md:block">Impact Certificate Preview</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Review the details before issuing the final document.</p>
+</div>
+<div class="flex gap-sm w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-md py-sm rounded-lg border border-outline-variant text-on-surface hover:bg-surface-accent font-label-md text-label-md transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                            Edit
+                        </button>
+<button class="flex-1 sm:flex-none px-md py-sm rounded-lg bg-primary text-on-primary hover:bg-primary-container hover:shadow-lg font-label-md text-label-md transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+                            Issue Certificate
+                        </button>
+</div>
+</div>
+<!-- The Certificate -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] p-2 relative overflow-hidden">
+<!-- Decorative Background Pattern -->
+<div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#6346eb 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="certificate-border bg-surface-bright rounded-lg p-md md:p-xl flex flex-col items-center text-center relative z-10">
+<!-- Header -->
+<div class="flex items-center gap-sm mb-lg">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-headline-md" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary tracking-tight">AquaMonitor</h3>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-sm">Certificate of Impact</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-xl">This certifies the successful ecological restoration and capacity enhancement of the following water body, contributing significantly to local environmental sustainability.</p>
+<!-- Core Details (Bento-style Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-sm w-full max-w-3xl mb-xl">
+<!-- Primary Detail Card -->
+<div class="col-span-1 md:col-span-2 glass-panel rounded-xl p-md flex flex-col items-center border border-primary-fixed bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-xs">Project Subject</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Kalyani Temple Pond</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Mysuru District, Karnataka Village</p>
+</div>
+<!-- Metric Cards -->
+<div class="glass-panel rounded-xl p-md flex flex-col justify-center border-l-4 border-l-secondary-container bg-surface-container-lowest text-left">
+<div class="flex items-center gap-xs mb-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">aspect_ratio</span>
+<span class="font-label-sm text-label-sm uppercase">Restored Area</span>
+</div>
+<div class="flex items-baseline gap-xs">
+<span class="font-headline-md text-headline-md text-on-surface">12.4</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Hectares</span>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-md flex flex-col justify-center border-l-4 border-l-status-info bg-surface-container-lowest text-left">
+<div class="flex items-center gap-xs mb-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">waves</span>
+<span class="font-label-sm text-label-sm uppercase">Water Capacity</span>
+</div>
+<div class="flex items-baseline gap-xs">
+<span class="font-headline-md text-headline-md text-on-surface">45,000</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Cubic Meters</span>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-md flex flex-col justify-center border-l-4 border-l-status-success bg-surface-container-lowest text-left">
+<div class="flex items-center gap-xs mb-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">eco</span>
+<span class="font-label-sm text-label-sm uppercase">Environmental Impact</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Restored Local Biodiversity</span>
+</div>
+<div class="glass-panel rounded-xl p-md flex flex-col justify-center border-l-4 border-l-tertiary-container bg-surface-container-lowest text-left">
+<div class="flex items-center gap-xs mb-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">account_balance</span>
+<span class="font-label-sm text-label-sm uppercase">Funding Source</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Jal Shakti Abhiyan</span>
+</div>
+</div>
+<!-- Footer / Signatures -->
+<div class="w-full max-w-3xl flex justify-between items-end mt-lg pt-lg border-t border-outline-variant">
+<!-- Date & Seal -->
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 rounded-full seal-stamp flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div class="text-left">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Date Issued</p>
+<p class="font-tabular-nums text-tabular-nums text-on-surface">October 24, 2023</p>
+</div>
+</div>
+<!-- Digital Signature -->
+<div class="text-center">
+<div class="signature-font text-[32px] text-primary mb-xs">Dr. A. Sharma</div>
+<div class="h-[1px] w-48 bg-outline-variant mb-xs mx-auto"></div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Chief Environmental Officer</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Nav (Suppressed on Desktop, Visible on Mobile, Reports mapped to Ponds/Tasks based on semantic intent) -->
+<nav class="fixed lg:hidden bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container shadow-[0_-4px_10px_rgba(0,0,0,0.05)] border-t-0">
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-16 h-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-16 h-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">waves</span>
+<span class="font-label-sm text-label-sm mt-1">Ponds</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 w-16 h-12 mt-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+<span class="font-label-sm text-label-sm mt-1 hidden">Tasks</span> <!-- Label hidden in active state design pattern if needed, but keeping for json compliance -->
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-16 h-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-label-sm text-label-sm mt-1">Settings</span>
+</a>
+</nav>
+</body></html>

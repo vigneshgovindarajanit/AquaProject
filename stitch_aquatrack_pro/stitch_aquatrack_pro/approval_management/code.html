@@ -1,0 +1,414 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AquaRestor Admin - Approval Queue</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fdf8ff",
+                        "primary-fixed": "#e5deff",
+                        "status-info": "#007bff",
+                        "surface-accent": "#f0edff",
+                        "on-error-container": "#93000a",
+                        "primary": "#4a25d3",
+                        "on-tertiary-fixed": "#331200",
+                        "surface-bright": "#fdf8ff",
+                        "status-danger": "#dc3545",
+                        "outline": "#787587",
+                        "surface-container": "#f1ecf9",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#813800",
+                        "on-secondary-fixed-variant": "#2636b2",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#5c3de4",
+                        "on-secondary-container": "#fffbff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e5e0ee",
+                        "primary-container": "#6346eb",
+                        "status-success": "#28a745",
+                        "surface": "#fdf8ff",
+                        "status-warning": "#fd7e14",
+                        "surface-muted": "#f8f9fa",
+                        "on-secondary-fixed": "#000a64",
+                        "surface-container-high": "#ebe6f4",
+                        "surface-container-low": "#f7f1ff",
+                        "on-background": "#1c1a24",
+                        "tertiary-fixed": "#ffdbca",
+                        "secondary-fixed-dim": "#bcc2ff",
+                        "on-primary-fixed-variant": "#4318cc",
+                        "inverse-on-surface": "#f4eefc",
+                        "inverse-surface": "#312f39",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c9c4d8",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#a64a00",
+                        "on-surface-variant": "#484555",
+                        "secondary-container": "#5968e2",
+                        "tertiary-fixed-dim": "#ffb68e",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#190064",
+                        "secondary": "#3f4ec8",
+                        "inverse-primary": "#c8bfff",
+                        "on-tertiary-container": "#ffdccb",
+                        "on-tertiary-fixed-variant": "#763300",
+                        "surface-container-highest": "#e5e0ee",
+                        "secondary-fixed": "#dfe0ff",
+                        "on-surface": "#1c1a24",
+                        "primary-fixed-dim": "#c8bfff",
+                        "on-primary-container": "#e6dfff",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#ddd8e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "lg": "48px",
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "tabular-nums": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "tabular-nums": ["14px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #fdf8ff; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
+<!-- Desktop SideNav -->
+<nav class="hidden md:flex flex-col w-[260px] h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface-container-lowest shadow-sm z-40">
+<div class="px-md py-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">AquaRestor</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Admin Portal</p>
+</div>
+<div class="flex flex-col gap-base py-md flex-1 overflow-y-auto">
+<a class="text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">water_full</span>
+<span class="font-label-md text-label-md">Ponds</span>
+</a>
+<a class="bg-primary text-on-primary rounded-lg mx-2 px-4 py-2 font-bold flex items-center gap-3 scale-95 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_tree</span>
+<span class="font-label-md text-label-md">Projects</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">engineering</span>
+<span class="font-label-md text-label-md">Workers</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">description</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<div class="p-md mt-auto">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-2 px-4 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Restoration
+            </button>
+<a class="text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors flex items-center gap-3 mt-4" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- TopNav -->
+<header class="hidden md:flex justify-between items-center px-gutter h-xl w-full bg-surface border-b border-outline-variant docked full-width top-0 pl-[260px] z-30 fixed top-0 left-0 right-0">
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-muted border-none rounded-full py-2 pl-10 pr-4 font-body-md text-body-md w-64 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Search approvals..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-80 active:opacity-100">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-80 active:opacity-100">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="Administrator Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a confident administrator in a well-lit, modern corporate office. The background is slightly blurred with a cool, luminous light-mode aesthetic, featuring subtle purple tech accents indicating a SaaS environment. High contrast, sharp focus on the face." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrrVsvHkWUL7Nbaz0d9kiYDeUH7ZJoULks6yGvoHCr8SqM5hRmCy6wHMgcGzVz2P4JVg3a5dkfpFsG7kdp7Js59rIe4jFSUDwc9i9j_-pw35f97h45XoPpyF8wcl5NM3MWWoPZanGNyqOzUFx3t4zipps-fjY-e2eL7UiQVTRwoaD7e6DhjfoKz2FNQaERRYNrVUSz19FrIIsa4cb357gZypMSFl1l3N0Bp0UMk48erpKoYeUAxmQ">
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="md:pl-[260px] md:pt-xl min-h-screen pb-24 md:pb-8">
+<div class="max-w-7xl mx-auto p-md md:p-lg grid grid-cols-1 xl:grid-cols-12 gap-lg">
+<!-- Left Column: Alerts & Queue -->
+<div class="xl:col-span-8 flex flex-col gap-lg">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h2 class="font-headline-lg md:font-headline-lg text-headline-lg md:text-headline-lg text-on-background">Approval Queue</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Review and manage pending restoration stage updates.</p>
+</div>
+<div class="flex gap-2">
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">filter_list</span> Filter
+                        </span>
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">sort</span> Oldest First
+                        </span>
+</div>
+</div>
+<!-- Stalled Projects Alert -->
+<div class="bg-error-container text-on-error-container p-md rounded-xl shadow-sm border border-red-200 flex items-start gap-4">
+<div class="bg-white p-2 rounded-full flex-shrink-0">
+<span class="material-symbols-outlined text-status-danger" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md font-bold">Stalled Projects Alert</h3>
+<p class="font-body-md text-body-md mt-1 opacity-90">3 projects have been awaiting approval for over 48 hours. Please review prioritizing these items to prevent field delays.</p>
+<div class="flex gap-4 mt-3">
+<a class="font-label-sm text-label-sm font-bold underline hover:opacity-80" href="#">View Stalled (3)</a>
+</div>
+</div>
+</div>
+<!-- Queue List -->
+<div class="flex flex-col gap-4">
+<!-- Queue Item 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all cursor-pointer relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-status-warning"></div>
+<div class="flex flex-col md:flex-row justify-between gap-4">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-variant">
+<img alt="Worker" class="w-full h-full object-cover" data-alt="A portrait of a male field worker wearing a safety vest and a hard hat, standing outdoors near a pond. The scene is brightly lit with natural sunlight, capturing a modern, tech-enabled environmental restoration context. The overall tone is professional and optimistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaQkKKOalmzplPcP9pdWpWLaenZjxFHoy6o1GzKGE2PfHegswRH7_BdlMSufCvBi71Mz694OiYwIJwdRpcTqy0UaEkZNHKHirJYPcypYz_D14H1bNXKAlbGt05zi0O61J-9NHfy6Xukjo-dFgfeti0GDC-YXq1VObm6FxNKVmVeZu9RAopZuIQyWxti0aCOef108xivlduXYcq_UANuzD0Lqij9Iuz3Eda_r9cXsCz8F2lGyGCG9s">
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-label-md text-label-md text-on-background">Marcus Johnson</h4>
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider">Field Tech</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Submitted "Debris Removal Complete"</p>
+<div class="flex items-center gap-3 mt-2 text-on-surface-variant opacity-80">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span class="font-label-sm text-label-sm">Willow Creek Pond (Site A)</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-outline"></div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span class="font-label-sm text-label-sm">2 hrs ago</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 md:flex-col md:items-end">
+<button class="bg-surface-accent text-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors flex items-center gap-2 border border-primary-fixed">
+<span class="material-symbols-outlined text-[18px]">photo_library</span>
+                                    View Evidence
+                                </button>
+<span class="bg-status-warning/10 text-status-warning px-2 py-1 rounded text-xs font-bold">Pending Review</span>
+</div>
+</div>
+</div>
+<!-- Queue Item 2 (Active/Selected) -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_8px_30px_rgba(0,0,0,0.08)] border-2 border-primary relative overflow-hidden group">
+<div class="flex flex-col md:flex-row justify-between gap-4">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-variant">
+<img alt="Worker" class="w-full h-full object-cover" data-alt="A portrait of a female field worker in casual outdoor gear, holding a digital tablet. Bright, natural lighting highlights her professional demeanor in an ecological restoration setting. The background subtly hints at a clean, modern software ecosystem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVJ2328dYe2njbpVUZoJSb7UkGBmlhuLFg60oH59972HTZ8XdBmh2JnT2crrxGGUVw50jfwMPi9XSAOru3Xkfu9ex1T1ffXF6_-xna7h8Oo3nQuEN5zloSnI7rNXDbZkBSEf8XcfrYyPN0Oem4eqYzdFeulzg_WAMA2VzVigumT_dGGye5Agig2G8_HcStKvS0gXOebqy_J877jnEYOnd3BxBMhrob8Ce204FBJGl6L2dVV6cgFH4">
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-label-md text-label-md text-on-background">Sarah Jenkins</h4>
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider">Sr. Ecologist</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Submitted "Flora Replanting Phase 1"</p>
+<div class="flex items-center gap-3 mt-2 text-on-surface-variant opacity-80">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span class="font-label-sm text-label-sm">Oakridge Reservoir (North Bank)</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-outline"></div>
+<div class="flex items-center gap-1 text-status-danger font-bold">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+<span class="font-label-sm text-label-sm">52 hrs ago</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 md:flex-col md:items-end">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md shadow-md flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                                    Reviewing...
+                                </button>
+</div>
+</div>
+</div>
+<!-- Queue Item 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all cursor-pointer relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-status-warning"></div>
+<div class="flex flex-col md:flex-row justify-between gap-4">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-variant">
+<img alt="Worker" class="w-full h-full object-cover" data-alt="A close-up portrait of a male field supervisor looking directly at the camera. He is in an outdoor environment with lush greenery subtly blurred in the background. The aesthetic is clean, bright, and optimistic, aligned with a modern environmental tech brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBOlRPIY5K-_mnRizY8kAyGDt0LIbvHG3lRBQ1T55D_8-ZhIFv80Pu8Sms0zhGzeY5vw_OOyY9Zax2qtRrWaTG6-a6Iex-zO6Xr_Ql1o7YznJwCU2tbt0UK1CtLbeM4Y3EFINtwpNBPCDnbYH1Ey8_bADPxgUMBsFwymK5C-qsyhhaRx3fRkDkdFKHNQ8IHQ5z4ZCxffx8WnyOZiXykswZxVvJX9JgrRH4dDWSOBxjiFQpig0OqUU">
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-label-md text-label-md text-on-background">David Chen</h4>
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider">Supervisor</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Submitted "Initial Water Quality Assessment"</p>
+<div class="flex items-center gap-3 mt-2 text-on-surface-variant opacity-80">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span class="font-label-sm text-label-sm">Pine Valley Basin</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-outline"></div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span class="font-label-sm text-label-sm">Yesterday</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 md:flex-col md:items-end">
+<button class="bg-surface-accent text-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors flex items-center gap-2 border border-primary-fixed">
+<span class="material-symbols-outlined text-[18px]">photo_library</span>
+                                    View Evidence
+                                </button>
+<span class="bg-status-warning/10 text-status-warning px-2 py-1 rounded text-xs font-bold">Pending Review</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Review Panel (Glassmorphism) -->
+<div class="xl:col-span-4 sticky top-[104px] self-start">
+<div class="glass-panel rounded-xl p-lg shadow-lg flex flex-col h-[calc(100vh-140px)] overflow-y-auto">
+<div class="flex justify-between items-start mb-6 border-b border-outline-variant pb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary font-bold">Review Submission</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Flora Replanting Phase 1</p>
+</div>
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Evidence Section -->
+<div class="mb-6">
+<h4 class="font-label-md text-label-md text-on-background mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">photo_camera</span>
+                            Submitted Evidence (3 Photos)
+                        </h4>
+<div class="grid grid-cols-2 gap-2">
+<div class="col-span-2 h-40 bg-surface-variant rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity">
+<img alt="Main Evidence" class="w-full h-full object-cover" data-alt="A wide shot of a recently replanted shoreline at a pond. Small green saplings are visible in neatly arranged rows in the muddy bank. The water is clear, reflecting a bright blue sky. High-quality, vibrant, modern environmental documentation photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAhr5S42X00iaeyGWJmMkHzhoja-0cXJXsr5jadkj7ibusBt0kbG4WbtmjO0qgz45VDHgz964Rio9dgtAMiQ70fhHZMg0VqGzd13aRnaGq5iQ1vzgA8z0UDMiJ7f-IzsCdraNYtYCwYoKkeijXCaK-nHpnMKKCJ7dwopzLbNAnQpZi1hAtEwIk2AGUbUeePCS5dEQuuqHxR1340-vhRRR91iI9Bwro1c_WJBo_CJd6dRgyfKjZFFQ">
+</div>
+<div class="h-24 bg-surface-variant rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity">
+<img alt="Evidence 2" class="w-full h-full object-cover" data-alt="A close-up shot of a worker's hands in gloves gently packing soil around a newly planted native grass sapling near a water's edge. Focus is on the action, conveying care and ecological restoration in a bright, optimistic lighting setup." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZPjx7OvELpRH5nKStUuDoL9i0VsZVjoAFmcF5980U0ILla1ZauccKK79yi03MQ9fFtMjJ7j6NjRrYEoF3JiOf7r2QR6qmgUYoyDOGsuW6Qs_WZyX2rK3b4yprNR_GmV7f0qdsexp50hkmeBPI418gYtUZzkIQqpHGo7ZJ6b3ARctIMPf4x8zZs63ysy6v5gxcS_bfD_whQ_n5n25OTKsKFIUCwxFmsae6h7VYpJK8TeiDDEcxZrk">
+</div>
+<div class="h-24 bg-surface-variant rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity relative">
+<img alt="Evidence 3" class="w-full h-full object-cover" data-alt="A medium shot of several tagged saplings planted along a reservoir bank. The tags are white and visible against the dark soil. The scene is brightly lit, indicative of a successful daytime operation in a modern eco-management context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsRIPM0V8R4Hd36qUD5QVLh3vTDMem_8cHFbAmjy4FnkoWJKg-AH6u_IWmR2yIUuvwt1DOZ2m0FQe-pnBYbWGQGxJ_Ql2u5YxetxBkDk5ODV2WxNYUD-_FBg52TH6dDDLqpPu3ZiXPZ4TupVqI5Sek_2oOZRcUX3Y7honYumt1bzQ_Px0NiDTOxhtl1TLw44MTO2KEN8ItTD-_BrCutQa9gTyMQDGJqPkoEP8XOfNJFu86elec07g">
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Worker Notes -->
+<div class="mb-6 bg-surface-container-low p-4 rounded-lg">
+<h4 class="font-label-sm text-label-sm font-bold text-on-surface-variant mb-2">Worker Notes</h4>
+<p class="font-body-md text-body-md text-on-background italic">"Completed planting 50 native reeds along the north bank as specified. Soil was slightly more compacted than expected, required additional tilling. GPS coordinates logged for all clusters."</p>
+</div>
+<!-- Action Area -->
+<div class="mt-auto pt-6 border-t border-outline-variant">
+<div class="mb-4">
+<label class="block font-label-sm text-label-sm font-bold text-on-background mb-2" for="rejection-reason">Rejection Reason (Optional)</label>
+<textarea class="w-full bg-surface-muted border-none rounded-lg p-3 font-body-md text-body-md focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-outline" id="rejection-reason" placeholder="Enter reason if rejecting..." rows="3"></textarea>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-surface-container-lowest text-status-danger border border-status-danger py-3 rounded-lg font-label-md text-label-md font-bold hover:bg-error-container transition-colors">
+                                Reject
+                            </button>
+<button class="flex-1 bg-primary text-on-primary py-3 rounded-lg font-label-md text-label-md font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
+                                Approve Update
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Nav -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)] bg-surface-container-lowest">
+<div class="flex justify-around items-center px-4 py-2 w-full">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high scale-95 transition-transform p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high scale-95 transition-transform p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">waves</span>
+<span class="font-label-sm text-label-sm mt-1">My Ponds</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1.5 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<span class="font-label-sm text-label-sm mt-1">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high scale-95 transition-transform p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add_circle</span>
+<span class="font-label-sm text-label-sm mt-1">Add Data</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high scale-95 transition-transform p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

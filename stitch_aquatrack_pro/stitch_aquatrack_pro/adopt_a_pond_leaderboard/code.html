@@ -1,0 +1,395 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AquaRestor - Adopt a Pond &amp; Leaderboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fdf8ff",
+                        "primary-fixed": "#e5deff",
+                        "status-info": "#007bff",
+                        "surface-accent": "#f0edff",
+                        "on-error-container": "#93000a",
+                        "primary": "#4a25d3",
+                        "on-tertiary-fixed": "#331200",
+                        "surface-bright": "#fdf8ff",
+                        "status-danger": "#dc3545",
+                        "outline": "#787587",
+                        "surface-container": "#f1ecf9",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#813800",
+                        "on-secondary-fixed-variant": "#2636b2",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#5c3de4",
+                        "on-secondary-container": "#fffbff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e5e0ee",
+                        "primary-container": "#6346eb",
+                        "status-success": "#28a745",
+                        "surface": "#fdf8ff",
+                        "status-warning": "#fd7e14",
+                        "surface-muted": "#f8f9fa",
+                        "on-secondary-fixed": "#000a64",
+                        "surface-container-high": "#ebe6f4",
+                        "surface-container-low": "#f7f1ff",
+                        "on-background": "#1c1a24",
+                        "tertiary-fixed": "#ffdbca",
+                        "secondary-fixed-dim": "#bcc2ff",
+                        "on-primary-fixed-variant": "#4318cc",
+                        "inverse-on-surface": "#f4eefc",
+                        "inverse-surface": "#312f39",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c9c4d8",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#a64a00",
+                        "on-surface-variant": "#484555",
+                        "secondary-container": "#5968e2",
+                        "tertiary-fixed-dim": "#ffb68e",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#190064",
+                        "secondary": "#3f4ec8",
+                        "inverse-primary": "#c8bfff",
+                        "on-tertiary-container": "#ffdccb",
+                        "on-tertiary-fixed-variant": "#763300",
+                        "surface-container-highest": "#e5e0ee",
+                        "secondary-fixed": "#dfe0ff",
+                        "on-surface": "#1c1a24",
+                        "primary-fixed-dim": "#c8bfff",
+                        "on-primary-container": "#e6dfff",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#ddd8e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "lg": "48px",
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "tabular-nums": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "tabular-nums": ["14px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #fdf8ff; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #4a25d3, #6346eb);
+        }
+    </style>
+</head>
+<body class="text-on-background min-h-screen flex flex-col md:flex-row">
+<!-- TopNavBar (Mobile Only) -->
+<header class="md:hidden flex justify-between items-center px-gutter h-xl w-full bg-surface border-b border-outline-variant z-40 sticky top-0">
+<div class="font-headline-md text-headline-md font-bold text-primary">AquaRestor</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:text-primary transition-colors">notifications</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:text-primary transition-colors">help_outline</span>
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A small circular avatar of a user profile in a clean, modern style. Bright lighting, simple background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiWWAw_5bfJRGRARotsAAxBwxxCndmiAXoXCJO4TT5JC56ktzZTGk-Em_4FZp5F9O744Dt7o534FbQamBimx4_OzHn79SUx3VT6Iw8Ci6rIC_Msmp6fxDxw8zxlMA54jYqTW4YfHkskG9VzyHRI9fmgMPvy0wmjs4shl3runWzgRg8gDTBD22F_pxwkvN95pWTFzCDGUzR7SvxiOVYEQTFf0G7e_MfQcgxWLDslQygkdMC5ZmM3MQ">
+</div>
+</header>
+<!-- SideNavBar (Desktop Only) -->
+<nav class="hidden md:flex w-[260px] h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface-container-lowest shadow-sm flex-col gap-base py-md z-40">
+<div class="px-md mb-8">
+<div class="font-headline-md text-headline-md font-bold text-primary">AquaRestor</div>
+<div class="text-on-surface-variant font-label-sm text-label-sm mt-1">Admin Portal</div>
+</div>
+<div class="flex-1 overflow-y-auto px-2">
+<a class="text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors flex items-center gap-3 w-[calc(100%-16px)]" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="bg-primary text-on-primary rounded-lg mx-2 px-4 py-2 font-bold flex items-center gap-3 w-[calc(100%-16px)] shadow-sm" href="#">
+<span class="material-symbols-outlined fill-icon">water_full</span>
+<span class="font-body-md text-body-md">Ponds</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors flex items-center gap-3 w-[calc(100%-16px)]" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-body-md text-body-md">Projects</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors flex items-center gap-3 w-[calc(100%-16px)]" href="#">
+<span class="material-symbols-outlined">engineering</span>
+<span class="font-body-md text-body-md">Workers</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors flex items-center gap-3 w-[calc(100%-16px)]" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors flex items-center gap-3 w-[calc(100%-16px)]" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors flex items-center gap-3 w-[calc(100%-16px)]" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</div>
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary-container text-on-primary font-label-md text-label-md py-3 rounded-lg hover:bg-primary transition-all flex items-center justify-center gap-2 mb-4">
+<span class="material-symbols-outlined">add</span>
+                New Restoration
+            </button>
+<a class="text-on-surface-variant hover:bg-surface-container-high px-4 py-2 rounded-lg transition-colors flex items-center gap-3 w-full" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-[260px] pb-24 md:pb-0 min-h-screen bg-background relative overflow-hidden">
+<!-- Decorative Background Gradient -->
+<div class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary-fixed/30 rounded-full blur-[120px] -z-10 translate-x-1/3 -translate-y-1/3"></div>
+<div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary-fixed/20 rounded-full blur-[100px] -z-10 -translate-x-1/4 translate-y-1/4"></div>
+<!-- Top Navigation Area for Desktop Content (Search & User) -->
+<div class="hidden md:flex justify-between items-center px-gutter h-xl w-full border-b border-outline-variant bg-surface/80 backdrop-blur-md sticky top-0 z-30">
+<div class="flex-1 max-w-md relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-muted border-none rounded-lg py-2 pl-10 pr-4 text-body-md font-body-md focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Search ponds, projects..." type="text">
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-status-danger rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<img class="w-10 h-10 rounded-full object-cover border-2 border-surface-container-lowest shadow-sm cursor-pointer" data-alt="A small circular avatar of an admin user in a bright office setting. High quality, professional portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk5hX9coXH7tYgokjXDbR9Mx3Ra9hU843KPCq9RZvEvbYJOXUZdvpVoo330QfeCtIHjrMUIXa_6GJ6w52ZVFn-6ni__o0NgX33oeDEsdPfNRIkX-f6en-D_gkI_yKEiJJKfs192qLSHnLhjxpBIFaIfBUmLF-S--SZ3HFLqyd4Rhv8TgKyVIio0xRl8SC_Zij7gP9p7_MpFc7QLmadAQNFROW0E-VgvZXCw8uXf4lerm32zVBScCc">
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-gutter py-lg">
+<!-- Page Header -->
+<div class="mb-lg">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-2">Adopt a Pond Initiative</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Empowering communities through corporate and NGO sponsorships to restore vital rural water sources.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Leaderboard Section (Spans 4 cols on large screens) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="glass-card rounded-xl p-6 h-full flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md text-on-background flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container fill-icon">emoji_events</span>
+                                Village Leaderboard
+                            </h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Top performing blocks ranked by total restoration progress this quarter.</p>
+<div class="flex flex-col gap-4 flex-1">
+<!-- Rank 1 -->
+<div class="bg-surface-container-lowest rounded-lg p-4 border border-outline-variant shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-status-warning"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-status-warning/10 flex items-center justify-center text-status-warning font-headline-md text-headline-md">1</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-background">Sundargarh Block</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">85% Complete</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-status-warning fill-icon text-3xl drop-shadow-sm">military_tech</span>
+</div>
+</div>
+<!-- Rank 2 -->
+<div class="bg-surface-container-lowest rounded-lg p-4 border border-outline-variant shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-outline"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-headline-md text-headline-md">2</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-background">Kalahandi Block</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">72% Complete</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline fill-icon text-3xl">military_tech</span>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="bg-surface-container-lowest rounded-lg p-4 border border-outline-variant shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary-container"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/10 flex items-center justify-center text-tertiary-container font-headline-md text-headline-md">3</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-background">Mayurbhanj Block</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">68% Complete</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary-container fill-icon text-3xl">military_tech</span>
+</div>
+</div>
+</div>
+<button class="mt-6 w-full py-2 border border-primary text-primary font-label-md text-label-md rounded-lg hover:bg-primary/5 transition-colors">View Full Leaderboard</button>
+</div>
+</div>
+<!-- Ponds Gallery Section (Spans 8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Filters/Actions Bar -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant">
+<div class="flex gap-2 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 hide-scrollbar">
+<button class="px-4 py-1.5 bg-primary-container text-on-primary rounded-full font-label-sm text-label-sm whitespace-nowrap">All Available</button>
+<button class="px-4 py-1.5 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm text-label-sm hover:bg-surface-variant transition-colors whitespace-nowrap">High Priority</button>
+<button class="px-4 py-1.5 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm text-label-sm hover:bg-surface-variant transition-colors whitespace-nowrap">Near Me</button>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">filter_list</span> Filter
+                        </div>
+</div>
+<!-- Gallery Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Pond Card 1 -->
+<div class="glass-card rounded-xl overflow-hidden group flex flex-col hover:-translate-y-1 transition-transform duration-300">
+<div class="h-48 relative overflow-hidden">
+<div class="bg-cover bg-center w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="A serene, slightly degraded rural pond in India surrounded by dry earth and sparse vegetation under a bright, sunny sky. The water is murky but reflects the modern light-mode UI aesthetic with vibrant colors. High contrast, clean composition." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLZycu6J2pAohw8zxn2YLdUsD44vPKr0mh4jGge1v3HfV7X_U35qo-NKj1D_M72o5cUwtnNbMdgg8igtLAAQxLXdEJSv-MVbluD3urQxaOafMV5rFpIRyYFVFDKywyn-2fxUei1Iia_fPIZNjeoas6S0AIr3bmiwx0DjPzsAIzmNgbOw6Oa68p8cXecjQFeSGRxoAvOoJ3idNZp2Kf_mBM4WrQrxnyDXUvEdMJCTAWmayAxmD2hRM')"></div>
+<div class="absolute top-3 left-3 bg-status-danger text-on-error px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-xs">priority_high</span> Critical Need
+                                </div>
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+<h3 class="text-white font-headline-md text-headline-md leading-tight">Lotus Heritage Pond</h3>
+<p class="text-white/80 font-label-sm text-label-sm flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-xs">location_on</span> Balasore District</p>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex gap-4 mb-4 text-on-surface-variant font-tabular-nums text-tabular-nums border-b border-outline-variant pb-4">
+<div class="flex flex-col">
+<span class="text-xs text-outline">Area</span>
+<span class="text-on-background font-semibold">2.4 Acres</span>
+</div>
+<div class="w-[1px] bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="text-xs text-outline">Impacts</span>
+<span class="text-on-background font-semibold">450 Families</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-3">Primary water source for agricultural runoff. Requires immediate desilting and embankment reinforcement to prevent dry-out before summer.</p>
+<div class="mt-auto">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-2.5 rounded-lg hover:bg-primary-container shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2">
+                                        Adopt this Pond <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Pond Card 2 -->
+<div class="glass-card rounded-xl overflow-hidden group flex flex-col hover:-translate-y-1 transition-transform duration-300">
+<div class="h-48 relative overflow-hidden">
+<div class="bg-cover bg-center w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="A medium-sized village pond with calm water reflecting a clear blue sky. Partially surrounded by lush green trees, but the banks show signs of erosion. The image has a bright, optimistic, modern digital platform feel." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBeH_wSNNzC7nFRM6ws0gVlHB0divad3VIPw0Gd5Wx0GubN0fSLI3dX0H-UJf0rRn8sMLeslV01yG0c0vdDgLGsFf_sG5A0THDVfH6TvcrRGEmj4-1QsbKyq2bro2jIAKXuMDJ1q37li1-U3XWZqkWTShWAeDGp269FotS2OPoiAj6cIj8l_UlCVFmUR44qElor7hn-GVTjFQQNcerUNqQ8Z5T_qQ7uXUM9g9He3nIQul6sqFwv2AY')"></div>
+<div class="absolute top-3 left-3 bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-xs">eco</span> Ecological Focus
+                                </div>
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+<h3 class="text-white font-headline-md text-headline-md leading-tight">Green Canopy Reservoir</h3>
+<p class="text-white/80 font-label-sm text-label-sm flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-xs">location_on</span> Cuttack Outskirts</p>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex gap-4 mb-4 text-on-surface-variant font-tabular-nums text-tabular-nums border-b border-outline-variant pb-4">
+<div class="flex flex-col">
+<span class="text-xs text-outline">Area</span>
+<span class="text-on-background font-semibold">1.8 Acres</span>
+</div>
+<div class="w-[1px] bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="text-xs text-outline">Impacts</span>
+<span class="text-on-background font-semibold">200 Families</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-3">Needs biodiversity restoration. Proposed project includes planting native flora on banks and installing bio-filtration systems to improve water clarity.</p>
+<div class="mt-auto">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-2.5 rounded-lg hover:bg-primary-container shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2">
+                                        Adopt this Pond <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden flex justify-around items-center px-4 py-2 w-full fixed bottom-0 z-50 rounded-t-xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)] bg-surface-container-lowest">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high scale-95 transition-transform p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1.5 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined fill-icon">waves</span>
+<span class="font-label-sm text-label-sm mt-1">My Ponds</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high scale-95 transition-transform p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-sm text-label-sm mt-1">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high scale-95 transition-transform p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-sm text-label-sm mt-1">Add Data</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high scale-95 transition-transform p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

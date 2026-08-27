@@ -1,0 +1,397 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AquaMonitor - Audit Log</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-accent": "#f0edff",
+                        "inverse-on-surface": "#f4eefc",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#e5deff",
+                        "surface-bright": "#fdf8ff",
+                        "tertiary-container": "#a64a00",
+                        "on-primary-fixed": "#190064",
+                        "status-danger": "#dc3545",
+                        "secondary-fixed-dim": "#bcc2ff",
+                        "status-success": "#28a745",
+                        "surface-container-high": "#ebe6f4",
+                        "on-primary-container": "#e6dfff",
+                        "surface-variant": "#e5e0ee",
+                        "surface-container-highest": "#e5e0ee",
+                        "surface-tint": "#5c3de4",
+                        "on-primary-fixed-variant": "#4318cc",
+                        "on-surface-variant": "#484555",
+                        "secondary-container": "#5968e2",
+                        "surface-container-low": "#f7f1ff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#dfe0ff",
+                        "on-tertiary-fixed": "#331200",
+                        "tertiary-fixed": "#ffdbca",
+                        "status-info": "#007bff",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#f1ecf9",
+                        "background": "#fdf8ff",
+                        "secondary": "#3f4ec8",
+                        "surface": "#fdf8ff",
+                        "on-surface": "#1c1a24",
+                        "on-tertiary-fixed-variant": "#763300",
+                        "on-secondary-container": "#fffbff",
+                        "surface-dim": "#ddd8e5",
+                        "primary-container": "#6346eb",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb68e",
+                        "on-secondary-fixed-variant": "#2636b2",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-muted": "#f8f9fa",
+                        "tertiary": "#813800",
+                        "on-tertiary-container": "#ffdccb",
+                        "primary": "#4a25d3",
+                        "outline-variant": "#c9c4d8",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#c8bfff",
+                        "primary-fixed-dim": "#c8bfff",
+                        "on-secondary-fixed": "#000a64",
+                        "status-warning": "#fd7e14",
+                        "on-primary": "#ffffff",
+                        "outline": "#787587",
+                        "inverse-surface": "#312f39",
+                        "on-background": "#1c1a24"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "lg": "48px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "margin-mobile": "16px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "tabular-nums": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "tabular-nums": ["14px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col md:flex-row">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[260px] bg-surface-container-lowest dark:bg-inverse-surface shadow-sm hidden lg:flex flex-col p-gutter z-50">
+<div class="mb-lg">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">AquaMonitor</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Water Management</p>
+</div>
+<ul class="flex flex-col gap-2 flex-grow">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-accent transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-accent transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="water_drop">water_drop</span>
+                    Ponds
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-accent transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="assignment">assignment</span>
+                    Projects
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-accent transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="engineering">engineering</span>
+                    Workers
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-accent transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="monitoring">monitoring</span>
+                    Analytics
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-accent transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+                    Reports
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg font-label-md text-label-md bg-primary text-on-primary font-bold shadow-sm transition-transform duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<button class="w-full py-2 bg-primary-container text-on-primary-container font-label-md text-label-md rounded-lg mt-auto hover:bg-primary hover:text-on-primary transition-colors shadow-sm">
+            New Project
+        </button>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 lg:pl-[260px] flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 px-gutter w-full sticky top-0 z-40 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center">
+<span class="lg:hidden font-headline-md-mobile text-headline-md-mobile font-bold text-primary mr-4">AquaMonitor</span>
+<div class="hidden md:flex items-center bg-surface-muted rounded-full px-4 py-2 focus-within:ring-2 focus-within:ring-primary-container transition-shadow">
+<span class="material-symbols-outlined text-outline mr-2 text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md w-64 p-0 placeholder-outline-variant text-on-surface" placeholder="Search logs..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]" data-icon="help_outline">help_outline</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A small circular portrait of a professional woman with glasses, smiling softly. She is wearing a modern dark blazer over a light shirt. The background is a very subtle, soft studio gray, perfectly lit to look modern and clean, fitting a tech-forward SaaS platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy9TILKnB-qYQFJkoVwmiCQFH5q4Ec5kf9PyrqSa7pMoui1wR2Byh6w5FLR8Hcd7uv9v93K9RTkP_4gs3l6BLuRilv3p3DbvfSP1F3JJmpOftz0LxRDgoO7xLMV5vnUlWjY46mDgxrY0BPR-iQ2n89OSul5SyKvh9SIT3kxUUxV3JaLNS5AbeslLW0EmhzgglJGH3WvyrS_UOxfW087FDrslUqtWg6PnzzvrqhHUjh_V4tzTjwNjI">
+</div>
+</header>
+<!-- Canvas -->
+<div class="p-gutter flex-1 pb-24 lg:pb-gutter max-w-[1440px] mx-auto w-full">
+<div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg lg:font-headline-lg lg:text-headline-lg text-on-surface tracking-tight">Audit Log</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Chronological record of system activities and events.</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-muted rounded-lg border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-accent hover:border-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        Filter
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-muted rounded-lg border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-accent hover:border-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export
+                    </button>
+</div>
+</div>
+<!-- Filters -->
+<div class="bg-surface-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-surface-variant p-4 mb-md flex flex-wrap gap-4 items-center">
+<div class="flex flex-col gap-1 w-full md:w-auto min-w-[200px]">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">User Role</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-muted border-none rounded-lg px-3 py-2 pr-8 font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary-container outline-none transition-shadow">
+<option>All Roles</option>
+<option>Admin</option>
+<option>Worker</option>
+<option>System</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">arrow_drop_down</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 w-full md:w-auto min-w-[200px]">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Module</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-muted border-none rounded-lg px-3 py-2 pr-8 font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary-container outline-none transition-shadow">
+<option>All Modules</option>
+<option>Ponds</option>
+<option>Budget</option>
+<option>Approvals</option>
+<option>Auth</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">arrow_drop_down</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 w-full md:w-auto min-w-[200px]">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Date Range</label>
+<div class="relative flex items-center bg-surface-muted rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-primary-container transition-shadow">
+<span class="material-symbols-outlined text-outline mr-2 text-[18px]">calendar_today</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md w-full p-0 placeholder-outline-variant text-on-surface" placeholder="Last 7 Days" readonly="" type="text">
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-surface-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-surface-variant overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-muted border-b border-surface-variant">
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider whitespace-nowrap">Timestamp</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">User</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Action</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Module</th>
+<th class="px-6 py-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">IP / Device</th>
+</tr>
+</thead>
+<tbody class="font-tabular-nums text-tabular-nums text-on-surface divide-y divide-surface-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-accent/30 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">2023-10-27 14:32:01</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-sm text-[10px] font-bold">JD</div>
+<span>Jane Doe (Admin)</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">Pond Registered: "North Basin"</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+                                        Ponds
+                                    </span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-sm">192.168.1.105 (Mac/Safari)</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-accent/30 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">2023-10-27 13:15:44</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-label-sm text-[10px] font-bold">
+<span class="material-symbols-outlined text-[14px]">smart_toy</span>
+</div>
+<span class="italic text-on-surface-variant">System</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">Automated Sensor Sync Completed</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">
+                                        Sensors
+                                    </span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-sm">Internal (API)</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-accent/30 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">2023-10-27 11:05:22</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm text-[10px] font-bold">BS</div>
+<span>Bob Smith (Worker)</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">Stage Approved: "Excavation Phase 1"</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-surface-variant text-on-surface-variant font-label-sm text-label-sm">
+                                        Approvals
+                                    </span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-sm">10.0.0.42 (iOS/App)</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-accent/30 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">2023-10-27 09:41:10</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-sm text-[10px] font-bold">JD</div>
+<span>Jane Doe (Admin)</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">Budget Adjusted: +$5,000 to "East Valley"</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-error-container text-on-error-container font-label-sm text-label-sm">
+                                        Budget
+                                    </span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-sm">192.168.1.105 (Mac/Safari)</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-accent/30 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">2023-10-26 16:20:05</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm text-[10px] font-bold">AL</div>
+<span>Alice Lee (Manager)</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">Report Exported: "Q3 Water Quality"</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-surface-variant text-on-surface-variant font-label-sm text-label-sm">
+                                        Reports
+                                    </span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-sm">172.16.0.55 (Win/Chrome)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="border-t border-surface-variant p-4 flex items-center justify-between bg-surface-muted/50">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Showing 1-5 of 1,248</span>
+<div class="flex gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary-container text-on-primary-container font-label-md text-label-md flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center">3</button>
+<span class="w-8 h-8 flex items-center justify-center text-on-surface-variant">...</span>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-variant">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed lg:hidden bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container dark:bg-surface-container-high shadow-[0_-4px_10px_rgba(0,0,0,0.05)] border-t-0">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-variant active:scale-95 transition-all p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-variant active:scale-95 transition-all p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="waves">waves</span>
+<span class="font-label-sm text-label-sm mt-1">Ponds</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-variant active:scale-95 transition-all p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="task_alt">task_alt</span>
+<span class="font-label-sm text-label-sm mt-1">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined filled" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm mt-1 font-bold">Settings</span>
+</a>
+</nav>
+</body></html>

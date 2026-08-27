@@ -1,0 +1,355 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Citizen Reporting &amp; Feedback - AquaRestor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fdf8ff",
+                        "primary-fixed": "#e5deff",
+                        "status-info": "#007bff",
+                        "surface-accent": "#f0edff",
+                        "on-error-container": "#93000a",
+                        "primary": "#4a25d3",
+                        "on-tertiary-fixed": "#331200",
+                        "surface-bright": "#fdf8ff",
+                        "status-danger": "#dc3545",
+                        "outline": "#787587",
+                        "surface-container": "#f1ecf9",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#813800",
+                        "on-secondary-fixed-variant": "#2636b2",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#5c3de4",
+                        "on-secondary-container": "#fffbff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e5e0ee",
+                        "primary-container": "#6346eb",
+                        "status-success": "#28a745",
+                        "surface": "#fdf8ff",
+                        "status-warning": "#fd7e14",
+                        "surface-muted": "#f8f9fa",
+                        "on-secondary-fixed": "#000a64",
+                        "surface-container-high": "#ebe6f4",
+                        "surface-container-low": "#f7f1ff",
+                        "on-background": "#1c1a24",
+                        "tertiary-fixed": "#ffdbca",
+                        "secondary-fixed-dim": "#bcc2ff",
+                        "on-primary-fixed-variant": "#4318cc",
+                        "inverse-on-surface": "#f4eefc",
+                        "inverse-surface": "#312f39",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c9c4d8",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#a64a00",
+                        "on-surface-variant": "#484555",
+                        "secondary-container": "#5968e2",
+                        "tertiary-fixed-dim": "#ffb68e",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#190064",
+                        "secondary": "#3f4ec8",
+                        "inverse-primary": "#c8bfff",
+                        "on-tertiary-container": "#ffdccb",
+                        "on-tertiary-fixed-variant": "#763300",
+                        "surface-container-highest": "#e5e0ee",
+                        "secondary-fixed": "#dfe0ff",
+                        "on-surface": "#1c1a24",
+                        "primary-fixed-dim": "#c8bfff",
+                        "on-primary-container": "#e6dfff",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#ddd8e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "lg": "48px",
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "tabular-nums": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "tabular-nums": ["14px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #F0F2F5; }
+        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row pb-xl md:pb-0">
+<!-- Top Navigation (Web) -->
+<header class="hidden md:flex justify-between items-center px-gutter h-xl w-full bg-surface border-b border-outline-variant fixed top-0 z-40 pl-[260px]">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary">AquaRestor Admin</span>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-muted border-none rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Search..." type="text">
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-80 active:opacity-100"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-80 active:opacity-100"><span class="material-symbols-outlined">help_outline</span></button>
+<img alt="Administrator Avatar" class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="A clean, highly professional headshot avatar of an administrator for a tech-forward ecological dashboard, rendered in a crisp, bright light-mode aesthetic with soft white lighting. The background is a subtle pale purple gradient." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsFQxXi3E55qNS4YlUH876X9BjN_CA1-SK4HetMeIuCJM8PgF0fL6GC8hcPKQFVg-ngUIAZnBcByyrBvkJATantOy6Mo9jtxCs7IdUI6pRkoe_hyUy_7IJ5hcjZ9o8bUhosSupOqf1zenBAAhVvHaLKwkI8kIwPIyaS8KweH-OWu_hG0MR-CuyekHrfkpely2wWcZyrpVVVj7WLdg1lJo2gctXocMk3jwj7xF3w8HirAqYJZiPRWw">
+</div>
+</header>
+<!-- Side Navigation (Web) -->
+<nav class="hidden md:flex flex-col gap-base py-md bg-surface-container-lowest shadow-sm w-[260px] h-screen fixed left-0 top-0 border-r border-outline-variant z-50">
+<div class="px-gutter mb-lg">
+<div class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">water_drop</span>
+                AquaRestor
+            </div>
+<p class="font-label-sm text-label-sm text-outline mt-1">Admin Portal</p>
+</div>
+<div class="flex-1 overflow-y-auto px-2 space-y-2">
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors font-body-md text-body-md group scale-95 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors font-body-md text-body-md group scale-95 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">water_full</span>
+                Ponds
+            </a>
+<a class="flex items-center gap-3 bg-primary text-on-primary rounded-lg mx-2 px-4 py-2 font-bold font-body-md text-body-md scale-95 active:scale-90 duration-150 shadow-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_tree</span>
+                Projects
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors font-body-md text-body-md group scale-95 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">engineering</span>
+                Workers
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors font-body-md text-body-md group scale-95 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">analytics</span>
+                Analytics
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors font-body-md text-body-md group scale-95 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">description</span>
+                Reports
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors font-body-md text-body-md group scale-95 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">settings</span>
+                Settings
+            </a>
+</div>
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary text-on-primary rounded-lg py-3 font-label-md text-label-md flex justify-center items-center gap-2 hover:shadow-lg transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+                New Restoration
+            </button>
+<div class="mt-4 border-t border-outline-variant pt-4">
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors font-body-md text-body-md group scale-95 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">logout</span>
+                    Logout
+                </a>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-[260px] md:pt-xl p-margin-mobile md:p-gutter max-w-[1440px] mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-lg">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-xs">Citizen Reporting &amp; Feedback</h1>
+<p class="font-body-lg text-body-lg text-outline max-w-3xl">Submit environmental observations or join the community discussion to help us maintain rural ecological health.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Report Issue Form (Left Column) -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<div class="glass-card rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-surface-variant">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">report_problem</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-background">Report an Issue</h2>
+</div>
+<form class="space-y-sm">
+<div>
+<label class="block font-label-md text-label-md text-on-background mb-2">Issue Type</label>
+<select class="w-full bg-surface-muted border-none rounded-lg py-3 px-4 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all text-on-surface font-body-md">
+<option>Water Pollution</option>
+<option>Encroachment / Illegal Building</option>
+<option>Wildlife Distress</option>
+<option>Structural Damage</option>
+<option>Other</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-background mb-2">Description</label>
+<textarea class="w-full bg-surface-muted border-none rounded-lg py-3 px-4 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all text-on-surface font-body-md resize-none" placeholder="Provide details about the issue..." rows="4"></textarea>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-background mb-2">Location</label>
+<div class="relative h-40 rounded-lg overflow-hidden bg-surface-variant border border-outline-variant flex items-center justify-center group cursor-pointer hover:border-primary transition-colors">
+<div class="absolute inset-0 bg-cover bg-center opacity-50 group-hover:opacity-70 transition-opacity" data-alt="A modern, high-contrast satellite map view centered on a rural pond area, styled in a luminous light mode aesthetic with crisp lines and subtle purple accents indicating water bodies. The lighting suggests a clear daytime view." data-location="Rural Pond District" style="background-image: url('https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg')"></div>
+<div class="z-10 flex flex-col items-center bg-surface/80 backdrop-blur-sm p-3 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary mb-1">pin_drop</span>
+<span class="font-label-sm text-label-sm">Tap to pin location</span>
+</div>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-background mb-2">Photo Proof (Optional)</label>
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-6 flex flex-col items-center justify-center text-center hover:border-primary hover:bg-surface-accent/20 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-outline mb-2 text-3xl">add_a_photo</span>
+<span class="font-label-sm text-label-sm text-outline">Drag &amp; drop or click to upload</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary rounded-lg py-3 font-label-md text-label-md font-bold mt-4 hover:shadow-lg transition-all active:scale-95 flex justify-center items-center gap-2" type="button">
+<span class="material-symbols-outlined">send</span> Submit Report
+                        </button>
+</form>
+</div>
+</div>
+<!-- Community & Discussions (Right Column) -->
+<div class="lg:col-span-7 flex flex-col gap-gutter">
+<!-- Moderated Reports List -->
+<div class="glass-card rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-surface-variant flex-1">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">public</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-background">Recent Community Reports</h2>
+</div>
+<button class="text-primary font-label-sm text-label-sm hover:underline">View All</button>
+</div>
+<div class="space-y-4">
+<!-- Report Item 1 -->
+<div class="flex gap-4 p-4 rounded-lg bg-surface-muted border border-transparent hover:border-outline-variant transition-colors group">
+<div class="w-16 h-16 rounded-lg bg-surface-variant overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A small thumbnail showing a clear, high-resolution photo of a rural pond bank with mild debris, shot in bright daylight, fitting a modern ecological tracking app aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9D0swjSiVEiIU_VgJBniWXOUg0LLinShnDK019Lcr4M4wv7hm0EGBv_KfOQ69IafvTgh5LkNvsHQ_PNNQfuHFxMYsef-V9ce1Qk8jW2i0j-dhRUv8pKRM_UTLhrjy82rCFFUuttG4eI4RwLkjWqfhz0BlpSttyGyJzgH3qjl2KfLlQH5-4xsykwldNJzyAw1jBJANRBMQsbtTOjqY1lkv1HfStdTGjMOd4E57zvASEBG8GhhOPuo">
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-label-md text-label-md text-on-background">Debris near North Bank</h3>
+<span class="bg-status-warning/10 text-status-warning px-2 py-1 rounded-full font-label-sm text-[10px] uppercase tracking-wider font-bold">Investigating</span>
+</div>
+<p class="font-body-sm text-sm text-outline mb-2 line-clamp-2">Noticed several plastic bags and debris accumulating near the inflow pipe on the north side of Willow Pond.</p>
+<div class="flex items-center gap-4 text-outline font-label-sm text-xs">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> 2 hrs ago</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Willow Pond</span>
+</div>
+</div>
+</div>
+<!-- Report Item 2 -->
+<div class="flex gap-4 p-4 rounded-lg bg-surface-muted border border-transparent hover:border-outline-variant transition-colors group">
+<div class="w-16 h-16 rounded-lg bg-surface-variant overflow-hidden flex-shrink-0 flex items-center justify-center bg-surface-accent">
+<span class="material-symbols-outlined text-primary text-2xl">image_not_supported</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-label-md text-label-md text-on-background">Broken fencing</h3>
+<span class="bg-status-success/10 text-status-success px-2 py-1 rounded-full font-label-sm text-[10px] uppercase tracking-wider font-bold">Resolved</span>
+</div>
+<p class="font-body-sm text-sm text-outline mb-2 line-clamp-2">The wooden fence separating the grazing area from the east pond is damaged.</p>
+<div class="flex items-center gap-4 text-outline font-label-sm text-xs">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> 1 day ago</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> East Pond</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Discussion Board -->
+<div class="glass-card rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-surface-variant bg-gradient-to-br from-surface-container-lowest to-surface-accent/20">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-background">Village Discussion Board</h2>
+</div>
+<div class="space-y-4 mb-4 max-h-[300px] overflow-y-auto pr-2">
+<!-- Comment 1 -->
+<div class="flex gap-3">
+<img class="w-8 h-8 rounded-full object-cover shadow-sm flex-shrink-0" data-alt="A clean, professional headshot of a community member in a light-mode tech interface, simple background, soft lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkEm4xQy0-767SGOHkmwQTsi0h5Mjg4uxR-S8WeQEdJXoKk390RAd0T0AZPd_N4d-lEftzu9GUCXcgcsm56XPaEOBaNC2fm9978d69f5tapvAtV8QxQ66wZMCGb4wdw6VVkaEhEMTmcVT5xr7g58Q6noel6oRZLKKcYD9T6FhZ1_DuYWoel042qbq1LM3Jsqq3K1A-7nhoUqxAwRi2DVIX3oYcyEYnGGFVmNsBQFw50tQi62XZddg">
+<div class="bg-surface-muted p-3 rounded-2xl rounded-tl-none border border-surface-variant flex-1">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-label-md text-label-md text-on-background">Sarah J.</span>
+<span class="text-xs text-outline font-tabular-nums">10:42 AM</span>
+</div>
+<p class="font-body-sm text-sm text-on-surface-variant">Has anyone noticed the water clarity improving in the central basin since the aerators were installed?</p>
+</div>
+</div>
+<!-- Comment 2 -->
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs flex-shrink-0">MK</div>
+<div class="bg-surface-muted p-3 rounded-2xl rounded-tl-none border border-surface-variant flex-1">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-label-md text-label-md text-on-background">Mark K.</span>
+<span class="text-xs text-outline font-tabular-nums">11:15 AM</span>
+</div>
+<p class="font-body-sm text-sm text-on-surface-variant">Yes! The turbidity readings on the public dashboard dropped significantly this week. Great work by the restoration team.</p>
+</div>
+</div>
+</div>
+<div class="relative mt-auto">
+<input class="w-full bg-surface-container border border-outline-variant rounded-full py-3 pl-4 pr-12 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all font-body-md text-sm" placeholder="Add to the discussion..." type="text">
+<button class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="md:hidden flex justify-around items-center px-4 py-2 w-full bg-surface-container-lowest shadow-[0_-4px_20px_rgba(0,0,0,0.05)] fixed bottom-0 w-full z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant scale-95 transition-transform active:bg-surface-container-high rounded-xl px-4 py-1.5" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant scale-95 transition-transform active:bg-surface-container-high rounded-xl px-4 py-1.5" href="#">
+<span class="material-symbols-outlined">waves</span>
+<span class="font-label-sm text-label-sm">My Ponds</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant scale-95 transition-transform active:bg-surface-container-high rounded-xl px-4 py-1.5" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-sm text-label-sm">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1.5 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-label-sm text-label-sm font-bold">Add Data</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant scale-95 transition-transform active:bg-surface-container-high rounded-xl px-4 py-1.5" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+</body></html>

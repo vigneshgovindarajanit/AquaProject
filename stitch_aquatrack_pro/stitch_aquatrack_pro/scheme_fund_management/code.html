@@ -1,0 +1,500 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AquaMonitor - Scheme &amp; Fund Management</title>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-accent": "#f0edff",
+                        "inverse-on-surface": "#f4eefc",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#e5deff",
+                        "surface-bright": "#fdf8ff",
+                        "tertiary-container": "#a64a00",
+                        "on-primary-fixed": "#190064",
+                        "status-danger": "#dc3545",
+                        "secondary-fixed-dim": "#bcc2ff",
+                        "status-success": "#28a745",
+                        "surface-container-high": "#ebe6f4",
+                        "on-primary-container": "#e6dfff",
+                        "surface-variant": "#e5e0ee",
+                        "surface-container-highest": "#e5e0ee",
+                        "surface-tint": "#5c3de4",
+                        "on-primary-fixed-variant": "#4318cc",
+                        "on-surface-variant": "#484555",
+                        "secondary-container": "#5968e2",
+                        "surface-container-low": "#f7f1ff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#dfe0ff",
+                        "on-tertiary-fixed": "#331200",
+                        "tertiary-fixed": "#ffdbca",
+                        "status-info": "#007bff",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#f1ecf9",
+                        "background": "#fdf8ff",
+                        "secondary": "#3f4ec8",
+                        "surface": "#fdf8ff",
+                        "on-surface": "#1c1a24",
+                        "on-tertiary-fixed-variant": "#763300",
+                        "on-secondary-container": "#fffbff",
+                        "surface-dim": "#ddd8e5",
+                        "primary-container": "#6346eb",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb68e",
+                        "on-secondary-fixed-variant": "#2636b2",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-muted": "#f8f9fa",
+                        "tertiary": "#813800",
+                        "on-tertiary-container": "#ffdccb",
+                        "primary": "#4a25d3",
+                        "outline-variant": "#c9c4d8",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#c8bfff",
+                        "primary-fixed-dim": "#c8bfff",
+                        "on-secondary-fixed": "#000a64",
+                        "status-warning": "#fd7e14",
+                        "on-primary": "#ffffff",
+                        "outline": "#787587",
+                        "inverse-surface": "#312f39",
+                        "on-background": "#1c1a24"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "lg": "48px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "margin-mobile": "16px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "tabular-nums": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "tabular-nums": ["14px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Subtle grid pattern for modern tech feel */
+        .bg-grid-pattern {
+            background-image: radial-gradient(var(--tw-colors-outline-variant) 1px, transparent 1px);
+            background-size: 24px 24px;
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex antialiased">
+<!-- 1. SideNavBar (Desktop Shell) -->
+<!-- active tab: Analytics (as it closest aligns with fund management/charts) -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-surface-container-lowest dark:bg-inverse-surface shadow-sm hidden lg:flex flex-col p-gutter z-50 border-r border-outline-variant/20">
+<!-- Brand Area -->
+<div class="flex items-center gap-3 mb-10">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary-container shadow-sm">
+<span class="material-symbols-outlined icon-fill">water_drop</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed tracking-tight">AquaMonitor</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Water Management</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-2 flex-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors font-label-md text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors font-label-md text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">water_drop</span>
+<span>Ponds</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors font-label-md text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">assignment</span>
+<span>Projects</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors font-label-md text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">engineering</span>
+<span>Workers</span>
+</a>
+<!-- Active State Navigation -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary text-on-primary rounded-lg font-bold font-label-md text-label-md shadow-md scale-[0.98] transition-transform duration-200" href="#">
+<span class="material-symbols-outlined icon-fill">monitoring</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors font-label-md text-label-md group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">description</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors font-label-md text-label-md group mt-auto" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<!-- CTA -->
+<button class="mt-6 w-full py-3 px-4 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md font-bold hover:shadow-md transition-shadow flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span>
+            New Project
+        </button>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-h-screen w-full lg:pl-[260px]">
+<!-- 2. TopAppBar (Header Shell) -->
+<header class="flex justify-between items-center h-16 px-4 md:px-gutter w-full sticky top-0 z-40 bg-surface/80 backdrop-blur-md transition-all">
+<!-- Mobile Brand (Hidden on Desktop) -->
+<div class="flex items-center gap-2 lg:hidden">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-sm icon-fill">water_drop</span>
+</div>
+<h1 class="font-headline-md-mobile text-headline-md-mobile font-bold text-primary tracking-tight">AquaMonitor</h1>
+</div>
+<!-- Desktop Search / Context (Left aligned as per JSON) -->
+<div class="hidden lg:flex items-center flex-1 max-w-md">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-muted border-none rounded-full py-2 pl-10 pr-4 text-body-md font-body-md text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary-container focus:bg-surface transition-all" placeholder="Search schemes, funds..." type="text">
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-2 md:gap-4 ml-auto">
+<button class="p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-status-danger rounded-full border border-surface"></span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-accent transition-colors hidden md:block">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border-2 border-surface-variant cursor-pointer hover:border-primary transition-colors ml-2">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional headshot of an administrative user in a brightly lit modern office setting, facing the camera with a neutral expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeUebBvcGFKNTT_uDsLAwIThwT5Rnv1yjPS8w3XLmpKRkP65i5PVbStxaP4J85gw3SZrwoGdVIXrnWF-uLNcs4-xTLEyeO0wflQPKkrT1SeEdyCBWfouNQYMFHOjPqvC9__FR4CNXgjS6tBGNN4jTAuZ9Ug88F2WkSWTN3VsNUNcyiXl6NRiohTQpo2MNpwFMVNRqUxOxYtSQLQI9GSycOkm8kQo3Z9pVZH41F9sMt8ka7s_tKmwU">
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="flex-1 p-4 md:p-gutter pb-24 lg:pb-gutter flex flex-col gap-8 relative z-10">
+<!-- Decorative background blob -->
+<div class="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-fixed/30 rounded-full blur-[120px] -z-10 pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tight mb-2">Scheme &amp; Fund Management</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Overview of financial allocations, disbursements, and utilization across active funding sources for water conservation projects.</p>
+</div>
+<button class="flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-full font-label-md text-label-md font-bold shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all w-full md:w-auto shrink-0">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Add New Scheme
+                </button>
+</div>
+<!-- Top Dashboard Overview Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+<!-- Total Funds -->
+<div class="bg-surface rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/20 flex flex-col relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-surface-accent rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500"></div>
+<div class="flex items-center gap-3 mb-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Allocation</h3>
+</div>
+<div class="flex items-baseline gap-2 relative z-10">
+<span class="font-display-lg text-display-lg text-on-surface tracking-tighter">₹1,850</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Cr</span>
+</div>
+</div>
+<!-- Disbursed -->
+<div class="bg-surface rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/20 flex flex-col relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-surface-accent rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500"></div>
+<div class="flex items-center gap-3 mb-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary-container">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Disbursed</h3>
+</div>
+<div class="flex items-baseline gap-2 relative z-10">
+<span class="font-display-lg text-display-lg text-on-surface tracking-tighter">₹1,420</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Cr</span>
+</div>
+</div>
+<!-- Projects -->
+<div class="bg-surface rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/20 flex flex-col relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-surface-accent rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500"></div>
+<div class="flex items-center gap-3 mb-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-status-success/10 flex items-center justify-center text-status-success">
+<span class="material-symbols-outlined">nature_people</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Projects Funded</h3>
+</div>
+<div class="flex items-baseline gap-2 relative z-10">
+<span class="font-display-lg text-display-lg text-on-surface tracking-tighter">4,825</span>
+</div>
+</div>
+</div>
+<!-- Visualization Section: Utilization Chart -->
+<div class="bg-surface rounded-2xl p-6 md:p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/20">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1">Fund Utilization Overview</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Comparison of allocated vs. disbursed funds across schemes</p>
+</div>
+<div class="flex items-center gap-4 text-sm font-label-sm">
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-surface-variant"></span> Allocated</div>
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-primary"></span> Disbursed</div>
+</div>
+</div>
+<!-- CSS Bar Chart -->
+<div class="h-64 flex items-end justify-around gap-2 md:gap-8 relative mt-4 border-b border-outline-variant/30 pb-4">
+<!-- Y Axis Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="w-full border-t border-outline-variant/20 border-dashed h-0 relative"><span class="absolute -left-8 -top-3 text-xs text-on-surface-variant">100%</span></div>
+<div class="w-full border-t border-outline-variant/20 border-dashed h-0 relative"><span class="absolute -left-8 -top-3 text-xs text-on-surface-variant">50%</span></div>
+<div class="w-full border-t border-outline-variant/20 border-dashed h-0 relative"><span class="absolute -left-8 -top-3 text-xs text-on-surface-variant">0%</span></div>
+</div>
+<!-- Bar Group 1: MGNREGA -->
+<div class="relative flex flex-col items-center gap-2 h-full justify-end z-10 w-full max-w-[80px] group cursor-pointer">
+<div class="w-full bg-surface-variant rounded-t-lg relative h-full flex items-end overflow-hidden">
+<div class="w-full bg-primary rounded-t-lg transition-all duration-700 ease-out group-hover:bg-primary-container" style="height: 85%;"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold text-center mt-2">MGNREGA</span>
+<!-- Tooltip -->
+<div class="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded pointer-events-none whitespace-nowrap z-20 shadow-lg">85% Utilized</div>
+</div>
+<!-- Bar Group 2: Jal Shakti Abhiyan -->
+<div class="relative flex flex-col items-center gap-2 h-full justify-end z-10 w-full max-w-[80px] group cursor-pointer">
+<div class="w-full bg-surface-variant rounded-t-lg relative h-full flex items-end overflow-hidden">
+<div class="w-full bg-primary rounded-t-lg transition-all duration-700 ease-out group-hover:bg-primary-container" style="height: 72%;"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold text-center mt-2">Jal Shakti</span>
+<!-- Tooltip -->
+<div class="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded pointer-events-none whitespace-nowrap z-20 shadow-lg">72% Utilized</div>
+</div>
+<!-- Bar Group 3: CSR -->
+<div class="relative flex flex-col items-center gap-2 h-full justify-end z-10 w-full max-w-[80px] group cursor-pointer">
+<div class="w-full bg-surface-variant rounded-t-lg relative h-full flex items-end overflow-hidden">
+<div class="w-full bg-secondary rounded-t-lg transition-all duration-700 ease-out group-hover:bg-secondary-container" style="height: 94%;"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold text-center mt-2">CSR</span>
+<!-- Tooltip -->
+<div class="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded pointer-events-none whitespace-nowrap z-20 shadow-lg">94% Utilized</div>
+</div>
+<!-- Bar Group 4: State Govt -->
+<div class="relative flex flex-col items-center gap-2 h-full justify-end z-10 w-full max-w-[80px] group cursor-pointer">
+<div class="w-full bg-surface-variant rounded-t-lg relative h-full flex items-end overflow-hidden">
+<div class="w-full bg-primary rounded-t-lg transition-all duration-700 ease-out group-hover:bg-primary-container" style="height: 60%;"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold text-center mt-2 whitespace-nowrap">State Gov</span>
+<!-- Tooltip -->
+<div class="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded pointer-events-none whitespace-nowrap z-20 shadow-lg">60% Utilized</div>
+</div>
+</div>
+</div>
+<!-- Bento Grid: Detailed Scheme Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+<!-- Scheme Card: MGNREGA -->
+<div class="bg-surface rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/20 flex flex-col gap-5 hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low flex items-center justify-center text-primary border border-surface-variant">
+<span class="material-symbols-outlined icon-fill">spa</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">MGNREGA</h3>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<div class="grid grid-cols-2 gap-y-4 gap-x-2">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Total Allocation</p>
+<p class="font-tabular-nums text-tabular-nums text-on-surface font-bold text-lg">₹ 850 Cr</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Disbursed</p>
+<p class="font-tabular-nums text-tabular-nums text-on-surface font-bold text-lg">₹ 722 Cr</p>
+</div>
+<div class="col-span-2 bg-surface-muted p-3 rounded-lg flex justify-between items-center mt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Projects Funded</span>
+<span class="font-tabular-nums text-tabular-nums font-bold text-primary">2,145</span>
+</div>
+</div>
+<div class="mt-auto pt-2 border-t border-outline-variant/20">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Utilization</span>
+<span class="font-tabular-nums text-tabular-nums text-primary font-bold">85%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-1000" style="width: 85%"></div>
+</div>
+</div>
+</div>
+<!-- Scheme Card: Jal Shakti Abhiyan -->
+<div class="bg-surface rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/20 flex flex-col gap-5 hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low flex items-center justify-center text-secondary border border-surface-variant">
+<span class="material-symbols-outlined icon-fill">water</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold leading-tight">Jal Shakti<br><span class="text-lg">Abhiyan</span></h3>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<div class="grid grid-cols-2 gap-y-4 gap-x-2 mt-auto">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Total Allocation</p>
+<p class="font-tabular-nums text-tabular-nums text-on-surface font-bold text-lg">₹ 420 Cr</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Disbursed</p>
+<p class="font-tabular-nums text-tabular-nums text-on-surface font-bold text-lg">₹ 302 Cr</p>
+</div>
+<div class="col-span-2 bg-surface-muted p-3 rounded-lg flex justify-between items-center mt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Projects Funded</span>
+<span class="font-tabular-nums text-tabular-nums font-bold text-secondary">850</span>
+</div>
+</div>
+<div class="mt-auto pt-2 border-t border-outline-variant/20">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Utilization</span>
+<span class="font-tabular-nums text-tabular-nums text-secondary font-bold">72%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-1000" style="width: 72%"></div>
+</div>
+</div>
+</div>
+<!-- Scheme Card: CSR -->
+<div class="bg-surface rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/20 flex flex-col gap-5 hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low flex items-center justify-center text-status-success border border-surface-variant">
+<span class="material-symbols-outlined icon-fill">handshake</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">CSR Funds</h3>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<div class="grid grid-cols-2 gap-y-4 gap-x-2 mt-auto">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Total Allocation</p>
+<p class="font-tabular-nums text-tabular-nums text-on-surface font-bold text-lg">₹ 180 Cr</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Disbursed</p>
+<p class="font-tabular-nums text-tabular-nums text-on-surface font-bold text-lg">₹ 169 Cr</p>
+</div>
+<div class="col-span-2 bg-surface-muted p-3 rounded-lg flex justify-between items-center mt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Projects Funded</span>
+<span class="font-tabular-nums text-tabular-nums font-bold text-status-success">310</span>
+</div>
+</div>
+<div class="mt-auto pt-2 border-t border-outline-variant/20">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Utilization</span>
+<span class="font-tabular-nums text-tabular-nums text-status-success font-bold">94%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-status-success h-full rounded-full transition-all duration-1000" style="width: 94%"></div>
+</div>
+</div>
+</div>
+<!-- Scheme Card: State Government Funds -->
+<div class="bg-surface rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/20 flex flex-col gap-5 hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low flex items-center justify-center text-tertiary border border-surface-variant">
+<span class="material-symbols-outlined icon-fill">account_balance</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold leading-tight">State Gov<br><span class="text-lg">Funds</span></h3>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<div class="grid grid-cols-2 gap-y-4 gap-x-2 mt-auto">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Total Allocation</p>
+<p class="font-tabular-nums text-tabular-nums text-on-surface font-bold text-lg">₹ 400 Cr</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Disbursed</p>
+<p class="font-tabular-nums text-tabular-nums text-on-surface font-bold text-lg">₹ 240 Cr</p>
+</div>
+<div class="col-span-2 bg-surface-muted p-3 rounded-lg flex justify-between items-center mt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Projects Funded</span>
+<span class="font-tabular-nums text-tabular-nums font-bold text-tertiary">1,520</span>
+</div>
+</div>
+<div class="mt-auto pt-2 border-t border-outline-variant/20">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Utilization</span>
+<span class="font-tabular-nums text-tabular-nums text-tertiary font-bold text-status-warning">60%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-status-warning h-full rounded-full transition-all duration-1000" style="width: 60%"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- 3. BottomNavBar (Mobile Shell) -->
+<!-- active tab: Home (Fallback for dashboard/overview on mobile) -->
+<nav class="fixed lg:hidden bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container dark:bg-surface-container-high shadow-[0_-4px_10px_rgba(0,0,0,0.05)] border-t border-outline-variant/10">
+<!-- Active Item -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 scale-95 transition-all" href="#">
+<span class="material-symbols-outlined icon-fill">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">waves</span>
+<span class="font-label-sm text-label-sm mt-1">Ponds</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">task_alt</span>
+<span class="font-label-sm text-label-sm mt-1">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm mt-1">Settings</span>
+</a>
+</nav>
+</body></html>

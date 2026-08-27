@@ -1,0 +1,487 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Budget &amp; Resource Tracking | AquaRestor Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fdf8ff",
+                        "primary-fixed": "#e5deff",
+                        "status-info": "#007bff",
+                        "surface-accent": "#f0edff",
+                        "on-error-container": "#93000a",
+                        "primary": "#4a25d3",
+                        "on-tertiary-fixed": "#331200",
+                        "surface-bright": "#fdf8ff",
+                        "status-danger": "#dc3545",
+                        "outline": "#787587",
+                        "surface-container": "#f1ecf9",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#813800",
+                        "on-secondary-fixed-variant": "#2636b2",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#5c3de4",
+                        "on-secondary-container": "#fffbff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e5e0ee",
+                        "primary-container": "#6346eb",
+                        "status-success": "#28a745",
+                        "surface": "#fdf8ff",
+                        "status-warning": "#fd7e14",
+                        "surface-muted": "#f8f9fa",
+                        "on-secondary-fixed": "#000a64",
+                        "surface-container-high": "#ebe6f4",
+                        "surface-container-low": "#f7f1ff",
+                        "on-background": "#1c1a24",
+                        "tertiary-fixed": "#ffdbca",
+                        "secondary-fixed-dim": "#bcc2ff",
+                        "on-primary-fixed-variant": "#4318cc",
+                        "inverse-on-surface": "#f4eefc",
+                        "inverse-surface": "#312f39",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c9c4d8",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#a64a00",
+                        "on-surface-variant": "#484555",
+                        "secondary-container": "#5968e2",
+                        "tertiary-fixed-dim": "#ffb68e",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#190064",
+                        "secondary": "#3f4ec8",
+                        "inverse-primary": "#c8bfff",
+                        "on-tertiary-container": "#ffdccb",
+                        "on-tertiary-fixed-variant": "#763300",
+                        "surface-container-highest": "#e5e0ee",
+                        "secondary-fixed": "#dfe0ff",
+                        "on-surface": "#1c1a24",
+                        "primary-fixed-dim": "#c8bfff",
+                        "on-primary-container": "#e6dfff",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#ddd8e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "lg": "48px",
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "tabular-nums": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "tabular-nums": ["14px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation -->
+<header class="docked full-width top-0 pl-[260px] bg-surface border-b border-outline-variant flex justify-between items-center px-gutter h-xl w-full hidden md:flex z-40 fixed">
+<div class="flex items-center gap-md">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">AquaRestor Admin</h1>
+<div class="relative ml-lg">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface-muted border-none rounded-full py-2 pl-10 pr-4 text-sm font-body-md focus:ring-2 focus:ring-primary w-64 transition-all focus:w-80 outline-none placeholder-outline" placeholder="Search resources, ponds, or schemes..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-status-danger rounded-full"></span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center border border-outline-variant ml-2 overflow-hidden cursor-pointer">
+<img alt="Administrator Avatar" class="w-full h-full object-cover" data-alt="A small circular avatar image of a professional administrator with a subtle smile, well-lit studio photography, modern and clean style matching the bright UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYPmAwU7uZ-sIhf7IyJ-8iM2Q18NN2CO7A5Qt-yKS2CLF24BgBQ6iY66hzj2zPTLP_X0-OGbGomrjssajh5X402JfKjwCKIi1DfxhFz5P7xkdOS_CldLQfgn3QrmsHKiudT8rO700UbUWHXCiYpPNLaMS-wnGdRXiZW7jE-Vv2DdEZc4T8VgapZFDIo9-Fy8zfMI0K3INLFXw3C6PMcmih07m8POO0Wp4qIzo76R5E3kt5RS9gLVc">
+</div>
+</div>
+</header>
+<!-- Side Navigation -->
+<nav class="w-[260px] h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface-container-lowest shadow-sm flex flex-col gap-base py-md hidden md:flex z-50">
+<div class="px-md pb-md mb-md border-b border-outline-variant flex flex-col gap-2">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">AquaRestor</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Admin Portal</span>
+</div>
+<div class="flex-1 flex flex-col gap-1 px-2">
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="water_full">water_full</span>
+<span>Ponds</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span>Projects</span>
+</a>
+<a class="flex items-center gap-3 bg-primary text-on-primary rounded-lg mx-2 px-4 py-2 font-bold font-body-md text-body-md shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span>Budget &amp; Resources</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="engineering">engineering</span>
+<span>Workers</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high mx-2 px-4 py-2 rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Reports</span>
+</a>
+</div>
+<div class="mt-auto px-4 w-full">
+<button class="w-full bg-primary text-on-primary rounded-lg py-2.5 font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm mb-4">
+                New Restoration
+            </button>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high px-4 py-2 rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high px-4 py-2 rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</nav>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)] bg-surface-container-lowest flex justify-around items-center px-4 py-2 md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm text-label-sm scale-95 transition-transform active:bg-surface-container-high p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span>Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm text-label-sm scale-95 transition-transform active:bg-surface-container-high p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="waves">waves</span>
+<span>My Ponds</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1.5 font-label-sm text-label-sm scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="assignment" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<span>Budget</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm text-label-sm scale-95 transition-transform active:bg-surface-container-high p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="add_circle">add_circle</span>
+<span>Add Data</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm text-label-sm scale-95 transition-transform active:bg-surface-container-high p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span>Profile</span>
+</a>
+</nav>
+<!-- Main Content Area -->
+<main class="md:pl-[260px] pt-4 md:pt-[80px] pb-24 md:pb-12 min-h-screen">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-gutter py-md md:py-lg">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-lg gap-4">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-background mb-2">Budget &amp; Resource Tracking</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Monitor financial health and resource allocation across all active pond restoration projects.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface border border-outline-variant text-on-surface-variant px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export Report
+                    </button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                        Allocate Funds
+                    </button>
+</div>
+</div>
+<!-- Top KPIs - Bento Style -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-lg">
+<!-- Total Allocated -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex flex-col justify-between border border-outline-variant/30 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary-fixed/30 rounded-full blur-2xl group-hover:bg-primary-fixed/50 transition-colors duration-500"></div>
+<div class="flex items-start justify-between mb-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<span class="bg-surface-container text-primary text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                            FY 2024-25
+                        </span>
+</div>
+<div class="relative z-10">
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Total Budget Allocated</p>
+<h3 class="font-display-lg text-display-lg text-on-background tracking-tight">₹42.5<span class="text-2xl text-on-surface-variant font-medium">Cr</span></h3>
+</div>
+</div>
+<!-- Total Utilized -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex flex-col justify-between border border-outline-variant/30 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary-fixed/30 rounded-full blur-2xl group-hover:bg-secondary-fixed/50 transition-colors duration-500"></div>
+<div class="flex items-start justify-between mb-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="bg-surface-container text-secondary text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                            +12% vs last month
+                        </span>
+</div>
+<div class="relative z-10">
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Total Utilized</p>
+<div class="flex items-end gap-2">
+<h3 class="font-display-lg text-display-lg text-on-background tracking-tight">₹28.1<span class="text-2xl text-on-surface-variant font-medium">Cr</span></h3>
+</div>
+</div>
+</div>
+<!-- Overall Progress -->
+<div class="bg-primary text-on-primary rounded-xl p-md shadow-lg flex flex-col justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-surface-tint opacity-90 z-0"></div>
+<!-- Decorative pattern -->
+<div class="absolute inset-0 opacity-10 z-0" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 20px 20px;"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-end mb-2">
+<p class="font-label-md text-label-md text-primary-fixed">Budget Consumption</p>
+<span class="font-headline-md text-headline-md font-bold">66.1%</span>
+</div>
+<div class="w-full bg-on-primary/20 h-3 rounded-full overflow-hidden mb-4 shadow-inner">
+<div class="bg-white h-full rounded-full relative" style="width: 66.1%">
+<div class="absolute inset-0 bg-white/30 animate-[pulse_2s_ease-in-out_infinite]"></div>
+</div>
+</div>
+<div class="flex justify-between text-sm font-tabular-nums text-primary-fixed-dim">
+<span>Remaining: ₹14.4 Cr</span>
+<span>Target: <span class="text-white">75%</span> by Q3</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+<!-- Left Column: Table & Breakdown (Spans 2 columns on desktop) -->
+<div class="lg:col-span-2 flex flex-col gap-md">
+<!-- Breakdown by Scheme Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30 overflow-hidden">
+<div class="px-md py-4 border-b border-outline-variant/50 flex justify-between items-center bg-surface-muted/50">
+<h3 class="font-headline-md text-headline-md text-on-background flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">pie_chart</span>
+                                Budget Breakdown by Scheme
+                            </h3>
+<button class="text-primary hover:text-primary-container transition-colors text-sm font-label-md flex items-center">
+                                View Details <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider bg-surface-bright">
+<th class="py-3 px-md font-medium">Scheme Name</th>
+<th class="py-3 px-md font-medium text-right">Allocated (Cr)</th>
+<th class="py-3 px-md font-medium text-right">Utilized (Cr)</th>
+<th class="py-3 px-md font-medium">Progress</th>
+<th class="py-3 px-md font-medium text-center">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-background">
+<tr class="border-b border-outline-variant/20 hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-md">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="font-medium">MGNREGA</span>
+</div>
+</td>
+<td class="py-4 px-md text-right font-tabular-nums text-tabular-nums">₹25.0</td>
+<td class="py-4 px-md text-right font-tabular-nums text-tabular-nums">₹18.5</td>
+<td class="py-4 px-md">
+<div class="flex items-center gap-2">
+<div class="w-24 h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 74%"></div>
+</div>
+<span class="text-xs font-tabular-nums text-on-surface-variant">74%</span>
+</div>
+</td>
+<td class="py-4 px-md text-center">
+<span class="inline-block bg-status-success/10 text-status-success border border-status-success/20 px-2.5 py-1 rounded-full text-xs font-bold">On Track</span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant/20 hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-md">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-status-info"></div>
+<span class="font-medium">Jal Shakti Abhiyan</span>
+</div>
+</td>
+<td class="py-4 px-md text-right font-tabular-nums text-tabular-nums">₹12.5</td>
+<td class="py-4 px-md text-right font-tabular-nums text-tabular-nums">₹8.2</td>
+<td class="py-4 px-md">
+<div class="flex items-center gap-2">
+<div class="w-24 h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="bg-status-info h-full rounded-full" style="width: 65%"></div>
+</div>
+<span class="text-xs font-tabular-nums text-on-surface-variant">65%</span>
+</div>
+</td>
+<td class="py-4 px-md text-center">
+<span class="inline-block bg-status-success/10 text-status-success border border-status-success/20 px-2.5 py-1 rounded-full text-xs font-bold">On Track</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-md">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="font-medium">Corporate CSR</span>
+</div>
+</td>
+<td class="py-4 px-md text-right font-tabular-nums text-tabular-nums">₹5.0</td>
+<td class="py-4 px-md text-right font-tabular-nums text-tabular-nums">₹1.4</td>
+<td class="py-4 px-md">
+<div class="flex items-center gap-2">
+<div class="w-24 h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 28%"></div>
+</div>
+<span class="text-xs font-tabular-nums text-on-surface-variant">28%</span>
+</div>
+</td>
+<td class="py-4 px-md text-center">
+<span class="inline-block bg-status-warning/10 text-status-warning border border-status-warning/20 px-2.5 py-1 rounded-full text-xs font-bold">Lagging</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Resource Utilization Chart Placeholder -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30 p-md h-[300px] flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-background mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">bar_chart</span>
+                            Monthly Expenditure Trend
+                        </h3>
+<div class="flex-1 bg-surface-muted rounded-lg border border-outline-variant/20 flex items-center justify-center relative overflow-hidden group cursor-crosshair">
+<!-- Simulated Chart Grid -->
+<div class="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+<div class="text-center relative z-10 opacity-60 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-4xl mb-2 block text-outline">query_stats</span>
+<p class="font-label-md text-outline">Interactive Chart Component Area</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Alerts & Quick Actions -->
+<div class="flex flex-col gap-md">
+<!-- Variance Alerts -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-status-danger/20 overflow-hidden flex flex-col">
+<div class="px-md py-3 bg-error-container/30 border-b border-status-danger/10 flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-error-container flex items-center gap-2 text-lg">
+<span class="material-symbols-outlined text-status-danger">warning</span>
+                                Variance Alerts
+                            </h3>
+<span class="bg-status-danger text-white text-xs font-bold px-2 py-0.5 rounded-full">2 Critical</span>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<!-- Alert 1 -->
+<div class="bg-surface border border-outline-variant/30 rounded-lg p-3 hover:border-status-danger/50 transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md font-bold text-on-background group-hover:text-status-danger transition-colors">Pond Alpha (Block A)</span>
+<span class="text-xs font-tabular-nums font-bold text-status-danger">+18% Over</span>
+</div>
+<p class="text-sm text-on-surface-variant font-body-md mb-2 line-clamp-2">Material costs exceeded estimation due to unseasonal rainfall delays.</p>
+<div class="flex justify-between items-center text-xs">
+<span class="text-outline">Est: ₹4.5L | Act: ₹5.3L</span>
+<button class="text-primary font-medium hover:underline">Review</button>
+</div>
+</div>
+<!-- Alert 2 -->
+<div class="bg-surface border border-outline-variant/30 rounded-lg p-3 hover:border-status-warning/50 transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md font-bold text-on-background group-hover:text-status-warning transition-colors">Pond Gamma (Block C)</span>
+<span class="text-xs font-tabular-nums font-bold text-status-warning">Resource Depleted</span>
+</div>
+<p class="text-sm text-on-surface-variant font-body-md mb-2">Excavation machinery budget fully consumed before milestone completion.</p>
+<div class="flex justify-between items-center text-xs">
+<span class="text-outline">Phase 2 Incomplete</span>
+<button class="text-primary font-medium hover:underline">Reallocate</button>
+</div>
+</div>
+</div>
+<div class="px-md py-3 bg-surface-muted/50 border-t border-outline-variant/20 text-center">
+<a class="text-sm font-label-md text-primary hover:text-primary-container transition-colors" href="#">View All Exceptions</a>
+</div>
+</div>
+<!-- Resource Utilization Snippet -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30 p-md flex flex-col gap-4">
+<h3 class="font-headline-md text-headline-md text-on-background flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">group_work</span>
+                            Labor Resource Cost
+                        </h3>
+<div class="flex items-center gap-4 p-3 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">engineering</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-md text-on-background">Total Wages Paid</span>
+<span class="font-bold text-sm">₹8.2 Cr</span>
+</div>
+<div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">precision_manufacturing</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-md text-on-background">Machinery Rental</span>
+<span class="font-bold text-sm">₹3.5 Cr</span>
+</div>
+<div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 60%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg bg-surface-container-highest md:pl-[260px] z-30 relative hidden md:block">
+<div class="max-w-[1440px] mx-auto px-gutter grid grid-cols-1 md:grid-cols-2 gap-lg items-center">
+<div class="text-on-surface-variant font-label-md text-label-md">
+                © 2024 AquaRestor Rural Pond Management Initiative. All rights reserved.
+            </div>
+<div class="flex gap-4 md:justify-end">
+<a class="text-on-surface-variant hover:text-primary transition-all hover:underline opacity-90 hover:opacity-100 font-label-md text-label-md" href="#">Explore Ponds</a>
+<a class="text-on-surface-variant hover:text-primary transition-all hover:underline opacity-90 hover:opacity-100 font-label-md text-label-md" href="#">Interactive Map</a>
+<a class="text-on-surface-variant hover:text-primary transition-all hover:underline opacity-90 hover:opacity-100 font-label-md text-label-md" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-all hover:underline opacity-90 hover:opacity-100 font-label-md text-label-md" href="#">Contact</a>
+<a class="text-on-surface-variant hover:text-primary transition-all hover:underline opacity-90 hover:opacity-100 font-label-md text-label-md" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+</body></html>
