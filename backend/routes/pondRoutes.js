@@ -8,6 +8,7 @@ const {
   deletePond,
   assignWorker,
   getDashboardStats,
+  getPondAudit,
 } = require("../controllers/pondController");
 const { protect } = require("../middleware/auth");
 const { authorize } = require("../middleware/role");
@@ -26,5 +27,6 @@ router
   .delete(protect, authorize("admin"), deletePond);
 
 router.put("/:id/assign", protect, authorize("admin"), assignWorker);
+router.get("/:id/audit", protect, authorize("admin", "worker"), getPondAudit);
 
 module.exports = router;

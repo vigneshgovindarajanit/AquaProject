@@ -1,33 +1,3 @@
-const asyncHandler = require("express-async-handler");
-const WaterQualityRecord = require("../models/WaterQualityRecord");
-const Pond = require("../models/Pond");
-
-// @desc    Worker logs a water quality record
-// @route   POST /api/water-quality
-// @access  Private/Worker
-const createWaterQualityRecord = asyncHandler(async (req, res) => {
-  const record = await WaterQualityRecord.create({
-    ...req.body,
-    recordedBy: req.user._id,
-  });
-
-  // Keep the pond's overall health score in sync with the latest reading
-  await Pond.findByIdAndUpdate(record.pond, {
-    overallHealthScore: record.healthScore,
-  });
-
-  res.status(201).json(record);
-});
-
-// @desc    Get water quality history for a pond (for trend charts)
-// @route   GET /api/water-quality?pond=<pondId>
-// @access  Private
-const getWaterQualityRecords = asyncHandler(async (req, res) => {
-  const filter = {};
-  if (req.query.pond) filter.pond = req.query.pond;
-
-  const records = await WaterQualityRecord.find(filter).sort({ recordedDate: 1 });
-  res.json(records);
-});
-
-module.exports = { createWaterQualityRecord, getWaterQualityRecords };
+const asyncHandler=require("express-async-handler");const db=require("../config/db");const score=b=>((b.pH!==undefined&&(b.pH<6||b.pH>9))||(b.dissolvedOxygenMgL!==undefined&&b.dissolvedOxygenMgL<3)||(b.turbidityNTU!==undefined&&b.turbidityNTU>25)||b.algaePresence==="heavy_bloom")?"poor":((b.pH!==undefined&&(b.pH<6.5||b.pH>8.5))||(b.dissolvedOxygenMgL!==undefined&&b.dissolvedOxygenMgL<5)||(b.turbidityNTU!==undefined&&b.turbidityNTU>=10)||b.algaePresence==="moderate")?"moderate":"good";
+const createWaterQualityRecord=asyncHandler(async(req,res)=>{const b=req.body,s=score(b);const [x]=await db.query("INSERT INTO water_quality_records (pond_id,ph,turbidity_ntu,dissolved_oxygen_mgl,water_level_meters,temperature_c,algae_presence,biodiversity_notes,health_score,recorded_by) VALUES (?,?,?,?,?,?,?,?,?,?)",[b.pond,b.pH||null,b.turbidityNTU||null,b.dissolvedOxygenMgL||null,b.waterLevelMeters||null,b.temperatureC||null,b.algaePresence||"none",b.biodiversityNotes||null,s,req.user.id]);await db.query("UPDATE ponds SET overall_health_score=? WHERE id=?",[s,b.pond]);res.status(201).json({_id:x.insertId,pond:b.pond,healthScore:s});});
+const getWaterQualityRecords=asyncHandler(async(req,res)=>{const [rows]=await db.query(`SELECT * FROM water_quality_records${req.query.pond?" WHERE pond_id=?":""} ORDER BY recorded_date ASC`,req.query.pond?[req.query.pond]:[]);res.json(rows.map(r=>({...r,_id:r.id,pond:r.pond_id,healthScore:r.health_score})));});module.exports={createWaterQualityRecord,getWaterQualityRecords};

@@ -10,12 +10,14 @@ const pondRoutes = require("./routes/pondRoutes");
 const restorationRoutes = require("./routes/restorationRoutes");
 const waterQualityRoutes = require("./routes/waterQualityRoutes");
 const citizenReportRoutes = require("./routes/citizenReportRoutes");
+const analyticsRoutes = require("./routes/analyticsRoutes");
 
 connectDB();
 
 const app = express();
 
-app.use(cors({ origin: process.env.CLIENT_URL || "*" }));
+const allowedOrigins = [process.env.CLIENT_URL, "http://localhost:5173", "http://127.0.0.1:5173"].filter(Boolean);
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
@@ -29,6 +31,7 @@ app.use("/api/ponds", pondRoutes);
 app.use("/api/restoration-logs", restorationRoutes);
 app.use("/api/water-quality", waterQualityRoutes);
 app.use("/api/citizen-reports", citizenReportRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

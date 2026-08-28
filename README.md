@@ -6,7 +6,7 @@ A MERN stack boilerplate with **3 user roles**: **Admin**, **Worker** (rural pon
 
 ```
 pond-restoration-mern/
-├── backend/         Node.js + Express + MongoDB API
+├── backend/         Node.js + Express + MySQL API
 │   ├── config/       DB connection
 │   ├── models/       User, Pond, RestorationLog, WaterQualityRecord, CitizenReport
 │   ├── middleware/    auth (JWT), role (RBAC), errorHandler
@@ -35,16 +35,24 @@ pond-restoration-mern/
 
 ```bash
 cd backend
-cp .env.example .env    # then edit MONGO_URI, JWT_SECRET etc.
+cp .env.example .env    # then edit DB_HOST, DB_USER, DB_PASSWORD, JWT_SECRET etc.
 npm install
 npm run dev              # starts on http://localhost:5000
 ```
 
-Create the first Admin account:
+Create the first Admin account (required before signing in):
 
 ```bash
-node seed/createAdmin.js
+npm run seed:admin
 # Login with: admin@pondtrack.local / Admin@123
+```
+
+Create local demo accounts for the other roles:
+
+```bash
+npm run seed:demo-users
+# Field worker: worker@pondtrack.local / Worker@123
+# Public citizen: citizen@pondtrack.local / Citizen@123
 ```
 
 ### 2. Frontend
@@ -54,6 +62,8 @@ cd frontend
 npm install
 npm run dev               # starts on http://localhost:5173
 ```
+
+The AquaMonitor login screen is the default page at `http://localhost:5173/`.
 
 ## Core API Endpoints
 
@@ -77,6 +87,7 @@ npm run dev               # starts on http://localhost:5173
 
 - This is a **boilerplate/starter**, not a production-ready system. Add input validation (e.g. Joi/Zod), file upload handling (Multer + Cloudinary/S3) for photos, rate limiting, and HTTPS before deployment.
 - Passwords are hashed with bcrypt; auth uses JWT bearer tokens.
+- The backend uses MySQL (`AquaPro` by default) via `mysql2` and creates its tables on startup.
 - Worker accounts require Admin approval before login (`isApproved` flag).
 - Water quality health scoring uses a simple threshold-based rule in `WaterQualityRecord.js` — refine with domain expert input.
 - Extend freely with the additional features listed in the project's SRS document (maps, reports, notifications, etc.).
