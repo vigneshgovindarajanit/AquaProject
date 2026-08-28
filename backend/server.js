@@ -11,6 +11,7 @@ const restorationRoutes = require("./routes/restorationRoutes");
 const waterQualityRoutes = require("./routes/waterQualityRoutes");
 const citizenReportRoutes = require("./routes/citizenReportRoutes");
 const analyticsRoutes = require("./routes/analyticsRoutes");
+const workerRoutes = require("./routes/workerRoutes");
 
 connectDB();
 
@@ -33,6 +34,7 @@ app.use("/api/water-quality", waterQualityRoutes);
 app.use("/api/citizen-reports", citizenReportRoutes);
 app.use("/api/analytics", analyticsRoutes);
 
+app.use("/api/workers", workerRoutes);
 app.use(notFound);
 app.use(errorHandler);
 

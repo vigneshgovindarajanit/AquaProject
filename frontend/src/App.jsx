@@ -8,6 +8,7 @@ import PublicPortal from "./pages/PublicPortal";
 import WorkerDashboard from "./pages/WorkerDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminWorkspace from "./pages/AdminWorkspace";
+import AdoptPond from "./pages/AdoptPond";
 import { useLocation } from "react-router-dom";
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/public" element={<PublicPortal />} />
+        <Route path="/adopt-pond/:pondId" element={<PrivateRoute roles={["citizen", "worker", "admin"]}><AdoptPond /></PrivateRoute>} />
 
         <Route
           path="/worker"

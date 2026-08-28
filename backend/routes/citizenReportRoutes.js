@@ -11,7 +11,7 @@ const { authorize } = require("../middleware/role");
 router
   .route("/")
   .get(protect, getReports)
-  .post(protect, authorize("citizen"), createReport);
+  .post(protect, authorize("citizen", "worker"), createReport);
 
 router.put("/:id/moderate", protect, authorize("admin"), moderateReport);
 

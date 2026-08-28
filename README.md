@@ -55,6 +55,14 @@ npm run seed:demo-users
 # Public citizen: citizen@pondtrack.local / Citizen@123
 ```
 
+Load realistic, time-stamped sample ponds, restoration progress, water-quality readings, and citizen reports:
+
+```bash
+npm run seed:sample-data
+```
+
+The backend uses the MySQL database named `aquapro` by default. Set `DB_NAME=aquapro` in `backend/.env` before running the server or seed commands.
+
 ### 2. Frontend
 
 ```bash
@@ -87,7 +95,7 @@ The AquaMonitor login screen is the default page at `http://localhost:5173/`.
 
 - This is a **boilerplate/starter**, not a production-ready system. Add input validation (e.g. Joi/Zod), file upload handling (Multer + Cloudinary/S3) for photos, rate limiting, and HTTPS before deployment.
 - Passwords are hashed with bcrypt; auth uses JWT bearer tokens.
-- The backend uses MySQL (`AquaPro` by default) via `mysql2` and creates its tables on startup.
+- The backend uses MySQL (`aquapro` by default) via `mysql2` and creates its tables on startup.
 - Worker accounts require Admin approval before login (`isApproved` flag).
 - Water quality health scoring uses a simple threshold-based rule in `WaterQualityRecord.js` — refine with domain expert input.
 - Extend freely with the additional features listed in the project's SRS document (maps, reports, notifications, etc.).
